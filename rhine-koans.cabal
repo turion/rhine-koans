@@ -1,0 +1,65 @@
+cabal-version:      3.4
+name:               rhine-koans
+version:            0.1.0.0
+-- synopsis:
+-- description:
+license:            MIT
+license-file:       LICENSE
+author:             Manuel Bärenz
+maintainer:         programming@manuelbaerenz.de
+-- copyright:
+build-type:         Simple
+extra-doc-files:    CHANGELOG.md
+-- extra-source-files:
+
+common opts
+    ghc-options: -Wall
+    default-language: GHC2021
+    build-depends:    base ^>=4.17.2.0
+                    , rhine ^>= 1
+    default-extensions:
+        Arrows
+        DataKinds
+
+common empty-test-suite
+    hs-source-dirs:   generic/empty-test-suite
+
+common test
+    build-depends:
+        silently ^>= 1.2
+
+library
+    import:           opts
+    build-depends:
+        rhine-koans:basic-lib
+
+library basic-lib
+    import:           opts
+    exposed-modules:  Koan1
+    hs-source-dirs:   koans/basic
+
+test-suite basic-1-test
+    import:           opts, test
+    type:             exitcode-stdio-1.0
+    main-is:          Test1.hs
+    hs-source-dirs:   koans/basic
+    build-depends:
+        rhine-koans:basic-lib
+
+executable basic
+    import:           opts, empty-test-suite
+    main-is:          Main.hs
+    hs-source-dirs:   koans/basic
+    build-depends:
+        rhine-koans:basic-lib
+
+library basic-1-lib
+    import:           opts
+    hs-source-dirs:   koans/basic
+
+executable basic-1
+    import:           opts, empty-test-suite
+    main-is:          Koan1.hs
+    hs-source-dirs:   koans/basic
+    build-depends:
+        rhine-koans:basic-lib
