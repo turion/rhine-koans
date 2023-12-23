@@ -15,6 +15,11 @@
 * compose two clsfs
 * can't compose two clsfs at different clocks: delete one of them
 * want to compose two clsfs at different clocks: RB
+* Arrow notation
+    * Repeat some of the key exercises with arrows again
+    * Correct file that has the Arrows extension missing
+    * Arrows for ClSF and for SN
+    * Last Arrow koan: Complicated thing that is too hard to express with combinators, supply all components, rewrite it with Arrow
 
 ## Advanced
 
