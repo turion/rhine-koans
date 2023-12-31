@@ -12,8 +12,10 @@ module Koan where
 import FRP.Rhine
 
 -- Can you complete this?
--- | The clock _type_ specifies the rate of the clock.
--- type TenPerSecond = Millisecond _
+
+{- | The clock _type_ specifies the rate of the clock.
+type TenPerSecond = Millisecond _
+-}
 
 -- | A clock that ticks 10 times second.
 tenPerSecond :: TenPerSecond
