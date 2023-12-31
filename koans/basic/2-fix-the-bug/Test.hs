@@ -1,7 +1,7 @@
 module Main where
 
 -- koan
-import qualified Koan (main)
+import Koan qualified (main)
 
 -- test-io
 import TestIO
