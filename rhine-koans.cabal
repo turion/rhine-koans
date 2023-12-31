@@ -15,51 +15,121 @@ extra-doc-files:    CHANGELOG.md
 common opts
     ghc-options: -Wall
     default-language: GHC2021
-    build-depends:    base ^>=4.17.2.0
+    build-depends:    base >=4.17.2.0 && <4.20
                     , rhine ^>= 1
+                    , text ^>= 2.0
     default-extensions:
-        Arrows
         DataKinds
+        OverloadedStrings
 
-common empty-test-suite
-    hs-source-dirs:   generic/empty-test-suite
+common exec
+    import:           opts
+    other-modules:    Koan
 
 common test
+    import:           exec
+    build-depends:
+      , rhine-koans:test-io
+
+library test-io
+    import:           opts
+    hs-source-dirs:   generic/test-io
+    exposed-modules:  TestIO
     build-depends:
         silently ^>= 1.2
 
-library
-    import:           opts
-    build-depends:
-        rhine-koans:basic-lib
-
-library basic-lib
-    import:           opts
-    exposed-modules:  Koan1
-    hs-source-dirs:   koans/basic
-
-test-suite basic-1-test
-    import:           opts, test
-    type:             exitcode-stdio-1.0
-    main-is:          Test1.hs
-    hs-source-dirs:   koans/basic
-    build-depends:
-        rhine-koans:basic-lib
-
-executable basic
-    import:           opts, empty-test-suite
+executable basic-1-hello-rhine
+    import:           exec
     main-is:          Main.hs
-    hs-source-dirs:   koans/basic
-    build-depends:
-        rhine-koans:basic-lib
+    hs-source-dirs:   koans/basic/1-hello-rhine
+                    , generic/reimport-main
 
-library basic-1-lib
-    import:           opts
-    hs-source-dirs:   koans/basic
+test-suite basic-1-hello-rhine-test
+    import:           test
+    type:             exitcode-stdio-1.0
+    main-is:          Test.hs
+    hs-source-dirs:   koans/basic/1-hello-rhine
 
-executable basic-1
-    import:           opts, empty-test-suite
-    main-is:          Koan1.hs
-    hs-source-dirs:   koans/basic
-    build-depends:
-        rhine-koans:basic-lib
+executable basic-2-fix-the-bug
+    import:           exec
+    main-is:          Main.hs
+    hs-source-dirs:   koans/basic/2-fix-the-bug
+                    , generic/reimport-main
+
+test-suite basic-2-fix-the-bug-test
+    import:           test
+    type:             exitcode-stdio-1.0
+    main-is:          Test.hs
+    hs-source-dirs:   koans/basic/2-fix-the-bug
+
+executable basic-3-faster
+    import:           exec
+    main-is:          Main.hs
+    hs-source-dirs:   koans/basic/3-faster
+                    , generic/reimport-main
+
+test-suite basic-3-faster-test
+    import:           test
+    type:             exitcode-stdio-1.0
+    main-is:          Test.hs
+    hs-source-dirs:   koans/basic/3-faster
+
+executable basic-4-compose
+    import:           exec
+    main-is:          Main.hs
+    hs-source-dirs:   koans/basic/4-compose
+                    , generic/reimport-main
+
+test-suite basic-4-compose-test
+    import:           test
+    type:             exitcode-stdio-1.0
+    main-is:          Test.hs
+    hs-source-dirs:   koans/basic/4-compose
+
+executable basic-5-compose-more
+    import:           exec
+    main-is:          Main.hs
+    hs-source-dirs:   koans/basic/5-compose-more
+                    , generic/reimport-main
+
+test-suite basic-5-compose-more-test
+    import:           test
+    type:             exitcode-stdio-1.0
+    main-is:          Test.hs
+    hs-source-dirs:   koans/basic/5-compose-more
+
+executable basic-6-compose-signal-functions-and-clocks
+    import:           exec
+    main-is:          Main.hs
+    hs-source-dirs:   koans/basic/6-compose-signal-functions-and-clocks
+                    , generic/reimport-main
+
+test-suite basic-6-compose-signal-functions-and-clocks-test
+    import:           test
+    type:             exitcode-stdio-1.0
+    main-is:          Test.hs
+    hs-source-dirs:   koans/basic/6-compose-signal-functions-and-clocks
+
+executable basic-7-compose-on-the-same-clock
+    import:           exec
+    main-is:          Main.hs
+    hs-source-dirs:   koans/basic/7-compose-on-the-same-clock
+                    , generic/reimport-main
+
+test-suite basic-7-compose-on-the-same-clock-test
+    import:           test
+    type:             exitcode-stdio-1.0
+    main-is:          Test.hs
+    hs-source-dirs:   koans/basic/7-compose-on-the-same-clock
+
+executable basic-8-compose-on-different-clocks
+    import:           exec
+    main-is:          Main.hs
+    hs-source-dirs:   koans/basic/8-compose-on-different-clocks
+                    , generic/reimport-main
+
+test-suite basic-8-compose-on-different-clocks-test
+    import:           test
+    type:             exitcode-stdio-1.0
+    main-is:          Test.hs
+    hs-source-dirs:   koans/basic/8-compose-on-different-clocks

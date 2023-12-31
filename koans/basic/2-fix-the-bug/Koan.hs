@@ -1,9 +1,11 @@
-{- | The second task is nearly the same as the first task:
+{- | Fix the bug!
+
+The second task is nearly the same as the first task:
 Your program should again output the message "Hello Rhine!" every second.
 But now, there is a bug in the code somewhere, preventing the program to compile!
 Can you spot it and fix it?
 -}
-module Koan1 where
+module Koan where
 
 -- rhine
 import FRP.Rhine
