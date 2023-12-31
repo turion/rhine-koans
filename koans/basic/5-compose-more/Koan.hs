@@ -58,7 +58,7 @@ printMessage = arrMCl Text.putStrLn
 mainComponent :: ClSF IO EverySecond () ()
 -- Can you fill in the _three_ components from above,
 -- in the order sensor, function, actuator?
-mainComponent = _ >>> _ >>> _
+mainComponent = produceMessage >>> exclamate >>> printMessage
 
 -- Huh, it seems we can often use >>> instead of >-> as well!
 

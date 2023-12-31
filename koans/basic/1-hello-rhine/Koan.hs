@@ -36,7 +36,7 @@ everySecond = waitClock -- A particular implementation of this clock that waits 
 message :: ClSF IO (Millisecond 1000) () ()
 message =
   constMCl -- Perform the following side effect every time the clock ticks.
-    (putStrLn _) -- This is the side effect to perform. Insert your message in the hole!
+    (putStrLn "Hello Rhine!") -- This is the side effect to perform. Insert your message in the hole!
 
 main :: IO ()
 main =

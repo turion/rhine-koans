@@ -91,7 +91,7 @@ and a resampling buffer in the middle.
 Can you fill the gap?
 -}
 mainRhine :: Rhine IO MainClock () ()
-mainRhine = produceRhine >-- _ --> printRhine
+mainRhine = produceRhine >-- fiveToOne --> printRhine
 
 main :: IO ()
 main = flow mainRhine

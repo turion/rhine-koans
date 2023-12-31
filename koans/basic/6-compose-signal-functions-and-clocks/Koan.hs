@@ -56,7 +56,7 @@ printMessage = arrMCl Text.putStrLn
 -}
 mainRhine :: Rhine IO EverySecond () ()
 -- The operators >>> and @@ don't combine well. Try brackets, or the >-> operator!
-mainRhine = produceMessage >>> exclamate >>> printMessage @@ everySecond
+mainRhine = produceMessage >-> exclamate >-> printMessage @@ everySecond
 
 main :: IO ()
 main =
