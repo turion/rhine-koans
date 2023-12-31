@@ -21,6 +21,8 @@ common opts
     default-extensions:
         DataKinds
         OverloadedStrings
+    if flag(dev)
+        ghc-options: -Werror
 
 common exec
     import:           opts
@@ -30,6 +32,11 @@ common test
     import:           exec
     build-depends:
       , rhine-koans:test-io
+
+flag dev
+  description: Enable warnings as errors. Active on ci.
+  default: False
+  manual: True
 
 library test-io
     import:           opts
