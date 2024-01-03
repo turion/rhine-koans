@@ -34,6 +34,34 @@ jobs:
       with:
         version: "0.11.0.0"
 
+  lint-solution:
+    name: "Run hlint on the solution branch"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: solution
+
+    - name: Set up HLint
+      uses: haskell-actions/hlint-setup@v2
+
+    - name: Run HLint
+      uses: haskell-actions/hlint-run@v2
+      with:
+        fail-on: warning
+
+  fourmolu-solution:
+    name: "Run fourmolu on the solution branch"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: solution
+
+    - uses: haskell-actions/run-fourmolu@v9
+      with:
+        version: "0.11.0.0"
+
   generateMatrix:
     name: "Generate matrix from cabal"
     runs-on: ubuntu-latest
