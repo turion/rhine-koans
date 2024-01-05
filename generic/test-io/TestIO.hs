@@ -20,7 +20,7 @@ testForSeconds ::
   -- | The property to test on the produced output ([] = test passes)
   ([String] -> [String]) ->
   IO ()
-testForSeconds nSeconds input mainFunction testFunction = do
+testForSeconds nSeconds _input mainFunction testFunction = do
   putStrLn "---------------------------"
   void $ forkIO mainFunction
   output <- capture_ $ do
