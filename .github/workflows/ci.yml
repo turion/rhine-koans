@@ -103,16 +103,12 @@ jobs:
       - name: Cabal build dependencies
         run: cabal build all --enable-tests --only-dependencies
 
-      - name: Check whether solution branch only contains diffs in the Koans, and merge
+      - name: Check whether solution branch only contains diffs in the Koans
         run: |
           git fetch origin main
           git fetch origin solution
           git checkout solution
-          git config --global user.name 'Manuel Bärenz'
-          git config --global user.email 'turion@users.noreply.github.com'
-          git merge origin/main
           git diff origin/solution --exit-code  -- ':(exclude)koans/**/Koan.hs'
-          git push
 
       - name: Check out solution branch
         uses: actions/checkout@v4
