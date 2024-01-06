@@ -12,10 +12,14 @@ build-type:         Simple
 extra-doc-files:    CHANGELOG.md
 -- extra-source-files:
 
+tested-with:
+  GHC == 9.2.8
+  GHC == 9.4.8
+
 common opts
     ghc-options: -Wall
     default-language: GHC2021
-    build-depends:    base >=4.17.2.0 && <4.20
+    build-depends:    base >=4.16.4.0 && <4.18
                     , rhine ^>= 1
                     , text ^>= 2.0
     default-extensions:
