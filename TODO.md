@@ -18,6 +18,11 @@
 ## Basic
 
 * stdin clock
+    * char count per line
+    * line count & total char count
+    * exception for eof & final summary
+    * cat a file in the tool
+    * secondly progress report
 * using the current time
 * behaviours: reusability across clocks
 * infer clock interval from component, or vice versa? if not possible, add type signature?
@@ -56,9 +61,12 @@
 
 ## Terminal
 
+* snake clone
+
 ## wai or servant
 
-Goal might be a Haskell menti clone
+* One possible goal might be a Haskell menti clone
+* Another possible goal: Caching file server with interaction via StdinClock (invalidate cache, report current status, start/stop live or summary logging, quit)
 
 ## Cassava
 

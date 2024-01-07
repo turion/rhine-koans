@@ -7,7 +7,7 @@ import Koan qualified (main)
 import TestIO
 
 main :: IO ()
-main = testForSeconds 2 Nothing Koan.main $ \output ->
+main = testForSeconds 2 Koan.main $ \output ->
   let errorsWithExcl = case length (filter (== "Hello Rhine!") output) of
         2 -> []
         1 -> ["Your program seems to be running a bit slow."]

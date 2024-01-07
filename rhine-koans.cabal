@@ -20,7 +20,7 @@ common opts
     ghc-options: -Wall
     default-language: GHC2021
     build-depends:    base >=4.16.4.0 && <4.18
-                    , rhine ^>= 1
+                    , rhine ^>= 1.2
                     , text ^>= 2.0
     default-extensions:
         DataKinds
@@ -48,6 +48,7 @@ library test-io
     exposed-modules:  TestIO
     build-depends:
         silently ^>= 1.2
+      , temporary ^>= 1.3
 
 executable basic-1-hello-rhine
     import:           exec
@@ -144,3 +145,15 @@ test-suite basic-8-compose-on-different-clocks-test
     type:             exitcode-stdio-1.0
     main-is:          Test.hs
     hs-source-dirs:   koans/basic/8-compose-on-different-clocks
+
+executable basic-9-input
+    import:           exec
+    main-is:          Main.hs
+    hs-source-dirs:   koans/basic/9-input
+                    , generic/reimport-main
+
+test-suite basic-9-input-test
+    import:           test
+    type:             exitcode-stdio-1.0
+    main-is:          Test.hs
+    hs-source-dirs:   koans/basic/9-input
