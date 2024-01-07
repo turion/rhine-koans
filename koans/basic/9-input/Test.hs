@@ -1,19 +1,27 @@
 module Main where
 
+-- text
+import Data.Text
+
 -- koan
 import Koan qualified (main)
 
 -- test-io
 import TestIO
 
+testLines :: [Text]
+testLines =
+  [ "Hello"
+  , "Rhine"
+  , "this"
+  , "is"
+  , "a"
+  , "test"
+  ]
+
 main :: IO ()
-main = testForSeconds 2 Nothing Koan.main $ \output ->
-  case length (filter (== "Hello Rhine!") output) of
-    10 -> []
-    0 -> ["Your program didn't produce the line \"Hello Rhine!\" in time. Maybe a typo?"]
-    n
-      | n < 10 ->
-          [ "Your program seems to be running a bit slow."
-          , "Only " ++ show n ++ " messages arrived."
-          ]
-    _ -> ["It seems the clock is ticking too fast."]
+main = testForSecondsInput 1 testLines Koan.main $ \output ->
+  case output of
+    [] -> ["Weird, your program didn't produce any output!"]
+    _ | output == testLines -> []
+    _ -> ["The program produced output, but it was different from the input."]
