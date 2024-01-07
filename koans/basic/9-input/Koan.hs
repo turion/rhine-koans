@@ -41,7 +41,7 @@ userInput = tagS
 -- | Output the same line that was just entered.
 parrot :: ClSF IO StdinClock () ()
 -- Do you remember how to convert an effectful function into a ClSF?
-parrot = userInput >-> _ Text.putStrLn
+parrot = userInput >-> arrMCl Text.putStrLn
 
 main :: IO ()
 main = flow $ parrot @@ StdinClock
