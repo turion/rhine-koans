@@ -231,3 +231,19 @@ test-suite basic-2-3-count-the-lines-test
     type:             exitcode-stdio-1.0
     main-is:          Test.hs
     hs-source-dirs:   koans/basic/2/3-count-the-lines/test
+
+common basic-2-4-count-all-the-words
+    if flag(solution)
+        hs-source-dirs:   koans/basic/2/4-count-all-the-words/solution
+    else
+        hs-source-dirs:   koans/basic/2/4-count-all-the-words
+
+executable basic-2-4-count-all-the-words
+    import:           exec, basic-2-4-count-all-the-words
+    main-is:          Main.hs
+
+test-suite basic-2-4-count-all-the-words-test
+    import:           test, basic-2-4-count-all-the-words
+    type:             exitcode-stdio-1.0
+    main-is:          Test.hs
+    hs-source-dirs:   koans/basic/2/4-count-all-the-words/test
