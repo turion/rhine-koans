@@ -8,6 +8,12 @@ Now, can you output the message "Hello Rhine!" _ten times_ per second?
 -}
 module Koan where
 
+-- base
+import Prelude hiding (putStrLn)
+
+-- text
+import Data.Text.IO (putStrLn)
+
 -- rhine
 import FRP.Rhine
 
