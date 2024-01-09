@@ -31,6 +31,7 @@ common opts
 common exec
     import:           opts
     other-modules:    Koan
+    hs-source-dirs:   generic/reimport-main
 
 common test
     import:           exec
@@ -54,7 +55,6 @@ executable basic-1-hello-rhine
     import:           exec
     main-is:          Main.hs
     hs-source-dirs:   koans/basic/1-hello-rhine
-                    , generic/reimport-main
 
 test-suite basic-1-hello-rhine-test
     import:           test
@@ -66,7 +66,6 @@ executable basic-2-fix-the-bug
     import:           exec
     main-is:          Main.hs
     hs-source-dirs:   koans/basic/2-fix-the-bug
-                    , generic/reimport-main
 
 test-suite basic-2-fix-the-bug-test
     import:           test
@@ -78,7 +77,6 @@ executable basic-3-faster
     import:           exec
     main-is:          Main.hs
     hs-source-dirs:   koans/basic/3-faster
-                    , generic/reimport-main
 
 test-suite basic-3-faster-test
     import:           test
@@ -90,7 +88,6 @@ executable basic-4-compose
     import:           exec
     main-is:          Main.hs
     hs-source-dirs:   koans/basic/4-compose
-                    , generic/reimport-main
 
 test-suite basic-4-compose-test
     import:           test
@@ -102,7 +99,6 @@ executable basic-5-compose-more
     import:           exec
     main-is:          Main.hs
     hs-source-dirs:   koans/basic/5-compose-more
-                    , generic/reimport-main
 
 test-suite basic-5-compose-more-test
     import:           test
@@ -114,7 +110,6 @@ executable basic-6-compose-signal-functions-and-clocks
     import:           exec
     main-is:          Main.hs
     hs-source-dirs:   koans/basic/6-compose-signal-functions-and-clocks
-                    , generic/reimport-main
 
 test-suite basic-6-compose-signal-functions-and-clocks-test
     import:           test
@@ -126,7 +121,6 @@ executable basic-7-compose-on-the-same-clock
     import:           exec
     main-is:          Main.hs
     hs-source-dirs:   koans/basic/7-compose-on-the-same-clock
-                    , generic/reimport-main
 
 test-suite basic-7-compose-on-the-same-clock-test
     import:           test
@@ -138,7 +132,6 @@ executable basic-8-compose-on-different-clocks
     import:           exec
     main-is:          Main.hs
     hs-source-dirs:   koans/basic/8-compose-on-different-clocks
-                    , generic/reimport-main
 
 test-suite basic-8-compose-on-different-clocks-test
     import:           test
@@ -150,7 +143,6 @@ executable basic-9-input
     import:           exec
     main-is:          Main.hs
     hs-source-dirs:   koans/basic/9-input
-                    , generic/reimport-main
 
 test-suite basic-9-input-test
     import:           test
