@@ -7,7 +7,7 @@ import Koan qualified (main)
 import TestIO
 
 main :: IO ()
-main = testForSeconds 2 Nothing Koan.main $ \output ->
+main = testForSeconds 2 Koan.main $ \output ->
   case length (filter (== "Hello Rhine!") output) of
     n
       | 19 <= n && n <= 21 -> []
@@ -28,4 +28,4 @@ main = testForSeconds 2 Nothing Koan.main $ \output ->
       , avgLengthMsg n
       ]
   where
-    avgLengthMsg n = "The average length between two ticks was " ++ show (round (2000 / fromIntegral n :: Double) :: Int) ++ " milliseconds."
+    avgLengthMsg n = "The average length between two ticks was " <> tshow (round (2000 / fromIntegral n :: Double) :: Int) <> " milliseconds."

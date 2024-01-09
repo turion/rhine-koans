@@ -7,7 +7,7 @@ import Koan qualified (main)
 import TestIO
 
 main :: IO ()
-main = testForSeconds 2 Nothing Koan.main $ \output ->
+main = testForSeconds 2 Koan.main $ \output ->
   case length (filter (== "Hello Rhine!") output) of
     10 -> []
     0 -> ["Your program didn't produce the line \"Hello Rhine!\" in time. Maybe a typo?"]
