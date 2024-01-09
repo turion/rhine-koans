@@ -43,6 +43,11 @@ flag dev
   default: False
   manual: True
 
+flag solution
+  description: Compile the solutions
+  default: False
+  manual: True
+
 library test-io
     import:           opts
     hs-source-dirs:   generic/test-io
@@ -51,101 +56,146 @@ library test-io
         silently ^>= 1.2
       , temporary ^>= 1.3
 
+common basic-1-hello-rhine
+    if flag(solution)
+        hs-source-dirs:   koans/basic/1-hello-rhine/solution
+    else
+        hs-source-dirs:   koans/basic/1-hello-rhine
+
 executable basic-1-hello-rhine
-    import:           exec
+    import:           exec, basic-1-hello-rhine
     main-is:          Main.hs
-    hs-source-dirs:   koans/basic/1-hello-rhine
 
 test-suite basic-1-hello-rhine-test
-    import:           test
+    import:           test, basic-1-hello-rhine
     type:             exitcode-stdio-1.0
     main-is:          Test.hs
-    hs-source-dirs:   koans/basic/1-hello-rhine
+    hs-source-dirs:   koans/basic/1-hello-rhine/test
+
+common basic-2-fix-the-bug
+    if flag(solution)
+        hs-source-dirs:   koans/basic/2-fix-the-bug/solution
+    else
+        hs-source-dirs:   koans/basic/2-fix-the-bug
 
 executable basic-2-fix-the-bug
-    import:           exec
+    import:           exec, basic-2-fix-the-bug
     main-is:          Main.hs
-    hs-source-dirs:   koans/basic/2-fix-the-bug
 
 test-suite basic-2-fix-the-bug-test
-    import:           test
+    import:           test, basic-2-fix-the-bug
     type:             exitcode-stdio-1.0
     main-is:          Test.hs
-    hs-source-dirs:   koans/basic/2-fix-the-bug
+    hs-source-dirs:   koans/basic/2-fix-the-bug/test
+
+common basic-3-faster
+    if flag(solution)
+        hs-source-dirs:   koans/basic/3-faster/solution
+    else
+        hs-source-dirs:   koans/basic/3-faster
 
 executable basic-3-faster
-    import:           exec
+    import:           exec, basic-3-faster
     main-is:          Main.hs
-    hs-source-dirs:   koans/basic/3-faster
 
 test-suite basic-3-faster-test
-    import:           test
+    import:           test, basic-3-faster
     type:             exitcode-stdio-1.0
     main-is:          Test.hs
-    hs-source-dirs:   koans/basic/3-faster
+    hs-source-dirs:   koans/basic/3-faster/test
+
+common basic-4-compose
+    if flag(solution)
+        hs-source-dirs:   koans/basic/4-compose/solution
+    else
+        hs-source-dirs:   koans/basic/4-compose
 
 executable basic-4-compose
-    import:           exec
+    import:           exec, basic-4-compose
     main-is:          Main.hs
-    hs-source-dirs:   koans/basic/4-compose
 
 test-suite basic-4-compose-test
-    import:           test
+    import:           test, basic-4-compose
     type:             exitcode-stdio-1.0
     main-is:          Test.hs
-    hs-source-dirs:   koans/basic/4-compose
+    hs-source-dirs:   koans/basic/4-compose/test
+
+common basic-5-compose-more
+    if flag(solution)
+        hs-source-dirs:   koans/basic/5-compose-more/solution
+    else
+        hs-source-dirs:   koans/basic/5-compose-more
 
 executable basic-5-compose-more
-    import:           exec
+    import:           exec, basic-5-compose-more
     main-is:          Main.hs
-    hs-source-dirs:   koans/basic/5-compose-more
 
 test-suite basic-5-compose-more-test
-    import:           test
+    import:           test, basic-5-compose-more
     type:             exitcode-stdio-1.0
     main-is:          Test.hs
-    hs-source-dirs:   koans/basic/5-compose-more
+    hs-source-dirs:   koans/basic/5-compose-more/test
+
+common basic-6-compose-signal-functions-and-clocks
+    if flag(solution)
+        hs-source-dirs:   koans/basic/6-compose-signal-functions-and-clocks/solution
+    else
+        hs-source-dirs:   koans/basic/6-compose-signal-functions-and-clocks
 
 executable basic-6-compose-signal-functions-and-clocks
-    import:           exec
+    import:           exec, basic-6-compose-signal-functions-and-clocks
     main-is:          Main.hs
-    hs-source-dirs:   koans/basic/6-compose-signal-functions-and-clocks
 
 test-suite basic-6-compose-signal-functions-and-clocks-test
-    import:           test
+    import:           test, basic-6-compose-signal-functions-and-clocks
     type:             exitcode-stdio-1.0
     main-is:          Test.hs
-    hs-source-dirs:   koans/basic/6-compose-signal-functions-and-clocks
+    hs-source-dirs:   koans/basic/6-compose-signal-functions-and-clocks/test
+
+common basic-7-compose-on-the-same-clock
+    if flag(solution)
+        hs-source-dirs:   koans/basic/7-compose-on-the-same-clock/solution
+    else
+        hs-source-dirs:   koans/basic/7-compose-on-the-same-clock
 
 executable basic-7-compose-on-the-same-clock
-    import:           exec
+    import:           exec, basic-7-compose-on-the-same-clock
     main-is:          Main.hs
-    hs-source-dirs:   koans/basic/7-compose-on-the-same-clock
 
 test-suite basic-7-compose-on-the-same-clock-test
-    import:           test
+    import:           test, basic-7-compose-on-the-same-clock
     type:             exitcode-stdio-1.0
     main-is:          Test.hs
-    hs-source-dirs:   koans/basic/7-compose-on-the-same-clock
+    hs-source-dirs:   koans/basic/7-compose-on-the-same-clock/test
+
+common basic-8-compose-on-different-clocks
+    if flag(solution)
+        hs-source-dirs:   koans/basic/8-compose-on-different-clocks/solution
+    else
+        hs-source-dirs:   koans/basic/8-compose-on-different-clocks
 
 executable basic-8-compose-on-different-clocks
-    import:           exec
+    import:           exec, basic-8-compose-on-different-clocks
     main-is:          Main.hs
-    hs-source-dirs:   koans/basic/8-compose-on-different-clocks
 
 test-suite basic-8-compose-on-different-clocks-test
-    import:           test
+    import:           test, basic-8-compose-on-different-clocks
     type:             exitcode-stdio-1.0
     main-is:          Test.hs
-    hs-source-dirs:   koans/basic/8-compose-on-different-clocks
+    hs-source-dirs:   koans/basic/8-compose-on-different-clocks/test
+
+common basic-9-input
+    if flag(solution)
+        hs-source-dirs:   koans/basic/9-input/solution
+    else
+        hs-source-dirs:   koans/basic/9-input
 
 executable basic-9-input
-    import:           exec
+    import:           exec, basic-9-input
     main-is:          Main.hs
-    hs-source-dirs:   koans/basic/9-input
 
 test-suite basic-9-input-test
-    import:           test
+    import:           test, basic-9-input
     type:             exitcode-stdio-1.0
     main-is:          Test.hs
-    hs-source-dirs:   koans/basic/9-input
+    hs-source-dirs:   koans/basic/9-input/test
