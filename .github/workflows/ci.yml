@@ -3,7 +3,7 @@ on:
   pull_request:
   push:
     branches:
-      - master
+      - main
   schedule:
     - cron: '23 14 * * 2'
   release:
@@ -76,7 +76,8 @@ jobs:
         with:
           path: ${{ steps.setup.outputs.cabal-store }}
           key: ${{ env.key }}-plan-${{ hashFiles('**/plan.json') }}
-          restore-keys: ${{ env.key }}-
+          restore-keys: |
+            ${{ env.key }}-
 
       - name: Install dependencies
         # If we had an exact cache hit, the dependencies will be up to date.
