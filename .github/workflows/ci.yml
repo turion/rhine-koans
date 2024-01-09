@@ -88,7 +88,7 @@ jobs:
       - name: Save cached dependencies
         uses: actions/cache/save@v3
         # If we had an exact cache hit, trying to save the cache would error because of key clash.
-        if: steps.cache.outputs.cache-hit != 'true'
+        # if: steps.cache.outputs.cache-hit != 'true'
         with:
           path: |
             ${{ steps.setup.outputs.cabal-store }}
