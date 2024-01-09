@@ -14,6 +14,6 @@ main = testForSeconds 2 Koan.main $ \output ->
     n
       | n < 10 ->
           [ "Your program seems to be running a bit slow."
-          , "Only " ++ show n ++ " messages arrived."
+          , "Only " <> tshow n <> " messages arrived."
           ]
     _ -> ["It seems the clock is ticking too fast."]
