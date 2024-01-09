@@ -1,18 +1,12 @@
 # Structure
 
-* Should be numbered, but also have a short title
-    * Subfolders have numbers and names
-* Every koan has an executable, and a test
-* How to do koans for different backends? Separate packages? Or rather separate sublibraries, like basic, advanced etc.?
 * The test should maybe show a green check mark
 * Each Koan should have a Haddocked substructure
+* If bug in HLS can't be solved, provide my own hie.yaml
 
 ## CI
 
-* Separate branch where all koans are solved
-    * CI check to make sure the diff is restricted `Koan.hs` files in the `koans` subdirectory
-* Formatter
-* cabal outdated wöchentlich checken
+* Check cabal outdated
 
 # Content
 ## Basic
@@ -20,11 +14,13 @@
 * stdin clock
     * char count per line
     * line count & total char count
+    * but summing char counts doesn't count newlines, so need all 3
     * exception for eof & final summary
     * cat a file in the tool
     * secondly progress report
 * using the current time
 * behaviours: reusability across clocks
+    * E.g. revisit some of the earlier koans and refactor them
 * infer clock interval from component, or vice versa? if not possible, add type signature?
 
 * Arrow notation
@@ -35,6 +31,9 @@
 
 * feedback, building up state, delay, sum
 * exception handling for control flow
+
+* common mistakes?
+    * arrM vs arrMCl
 
 ## Theory track
 
