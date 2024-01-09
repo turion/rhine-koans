@@ -34,34 +34,6 @@ jobs:
       with:
         version: "0.11.0.0"
 
-  lint-solution:
-    name: "Run hlint on the solution branch"
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-      with:
-        ref: solution
-
-    - name: Set up HLint
-      uses: haskell-actions/hlint-setup@v2
-
-    - name: Run HLint
-      uses: haskell-actions/hlint-run@v2
-      with:
-        fail-on: warning
-
-  fourmolu-solution:
-    name: "Run fourmolu on the solution branch"
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-      with:
-        ref: solution
-
-    - uses: haskell-actions/run-fourmolu@v9
-      with:
-        version: "0.11.0.0"
-
   generateMatrix:
     name: "Generate matrix from cabal"
     runs-on: ubuntu-latest
@@ -103,23 +75,11 @@ jobs:
       - name: Cabal build dependencies
         run: cabal build all --enable-tests --only-dependencies
 
-      - name: Check whether solution branch only contains diffs in the Koans
-        run: |
-          git fetch origin main
-          git fetch origin solution
-          git checkout solution
-          git diff origin/solution --exit-code  -- ':(exclude)koans/**/Koan.hs'
-
-      - name: Check out solution branch
-        uses: actions/checkout@v4
-        with:
-          ref: solution
-
       - name: Cabal build solutions
-        run: cabal build all --enable-tests -fdev
+        run: cabal build all --enable-tests -fdev -fsolution
 
       - name: Cabal test solutions
-        run: cabal test all --enable-tests --test-show-details=Always
+        run: cabal test all --enable-tests --test-show-details=Always -fsolution
 
   success:
     name: All GHCs built successfully
