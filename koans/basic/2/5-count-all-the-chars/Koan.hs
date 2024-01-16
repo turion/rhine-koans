@@ -33,9 +33,14 @@ userInput = tagS
 wordCount :: ClSF IO StdinClock () Int
 wordCount = userInput >-> arr (Text.words >>> length)
 
--- | Output the number of characters of the line that was just entered.
+{- | Output the number of characters of the line that was just entered.
+
+The newline character is not part of 'userInput',
+therefore +1 is added for it.
+-}
 charCount :: ClSF IO StdinClock () Int
-charCount = userInput >-> arr Text.length
+-- Yes, you can use >>> to compose ordinary functions as well!
+charCount = userInput >-> arr (Text.length >>> (+ 1))
 
 -- | Compute the sum of all input numbers so far, including the current one.
 sumClSF :: (Monad m, Num a) => ClSF m cl a a

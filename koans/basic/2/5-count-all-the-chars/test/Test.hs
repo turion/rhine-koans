@@ -20,9 +20,9 @@ main :: IO ()
 main = testForSecondsInput 1 testLines Koan.main $ \output ->
   case output of
     [] -> ["Weird, your program didn't produce any output!"]
-    _ | output == (tshow @Int <$> [2, 11, 5, 20, 6, 24]) -> []
+    _ | output == (tshow @Int <$> [2, 12, 5, 22, 6, 27]) -> []
     _
-      | output == (tshow @Int <$> [11, 2, 20, 5, 24, 6]) ->
+      | output == (tshow @Int <$> [12, 2, 22, 5, 27, 6]) ->
           ["Nearly there, it seems you've swapped characters and words around."]
     _ ->
       [ "The program produced output, but it wasn't quite right."
