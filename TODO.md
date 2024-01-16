@@ -7,6 +7,7 @@
 ## CI
 
 * Check cabal outdated
+* Check in diffs between solution and problem and make sure it is stable (such that every fix in a solution gets propagated to the problem and vice versa)
 
 # Content
 ## Basic
@@ -46,6 +47,9 @@
 * Complicated clock errors
     * Order of components (including a RB) is not the same as order of clocks in Rhine, this gives a weird error that `HasClock cl '[]` cannot be satisfied
 * Write your own backend to some library
+* Complicated Arrow syntax
+    * scoping of live and static values
+    * Nested if then else & do blocks
 
 ## Data analysis track
 
