@@ -1,20 +1,12 @@
-{- | Count the all the chars!
+{- | Count everything!
 
-If we can count words, we surely can count characters as well.
-But how do we output them _both_?
-
-'ClSF's have an instance for the 'Arrow' type class.
-This means that they can be composed sequentially (as you did already with '>>>'),
-but also in parallel.
-Let's look at one combinator that allows this:
+If we can count words, characters, and lines, let's just put it all together.
+This is a bit finicky, but give it a try nevertheless!
+Remember the combinator for parallel composition:
 
 @
 (&&&) :: Monad m => ClSF m cl a b -> ClSF m cl a c -> ClSF m cl a (b, c)
 @
-
-If two signal functions are on the same monad, the same clock, and receive the same input,
-we can combine them in parallel and execute both after each other.
-Both outputs are combined in a tuple.
 -}
 module Koan where
 
@@ -53,22 +45,26 @@ sumClSF = feedback 0 $ arr aggregator
        in
         (nextSum, nextSum)
 
+-- | The number of lines of input so far.
+lineCount :: ClSF IO StdinClock () Integer
+lineCount = count
+
 -- | The number of words of input so far.
 totalWordCount :: ClSF IO StdinClock () Int
 totalWordCount = wordCount >-> sumClSF
 
 -- | The number of characters of input so far.
 totalCharCount :: ClSF IO StdinClock () Int
--- Reuse your sum utility!
-totalCharCount = charCount >-> _
+totalCharCount = charCount >-> sumClSF
 
--- | The number of total words and characters so far.
-totalWordAndCharCount :: ClSF IO StdinClock () (Int, Int)
-totalWordAndCharCount = _ &&& _
+-- | The number of total lines, words and characters so far.
+totalCount :: ClSF IO StdinClock () _ -- What will the type of this be?
+totalCount = _ &&& _ &&& _
 
 -- | Print the number of total words and characters so far.
 printAllCounts :: ClSF IO StdinClock () ()
-printAllCounts = totalWordAndCharCount >-> arrMCl (\(words_, chars) -> print words_ >> print chars)
+-- On what do you need to pattern match here to bring lines_, words_ and chars into scope?
+printAllCounts = totalCount >-> arrMCl (\_ -> print lines_ >> print words_ >> print chars)
 
 main :: IO ()
 main = flow $ printAllCounts @@ StdinClock

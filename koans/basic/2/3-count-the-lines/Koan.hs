@@ -14,7 +14,7 @@ The 'count' signal function has internal state, the current count.
 Every time it is called (because 'StdinClock' has ticked),
 the count is incremented and returned.
 -}
-lineCount :: ClSF IO StdinClock () Integer
+lineCount :: ClSF IO StdinClock () Int
 lineCount = count -- This is part of the library!
 
 -- | Print the number of the line that was just entered.

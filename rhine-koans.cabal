@@ -263,3 +263,35 @@ test-suite basic-2-5-count-all-the-chars-test
     type:             exitcode-stdio-1.0
     main-is:          Test.hs
     hs-source-dirs:   koans/basic/2/5-count-all-the-chars/test
+
+common basic-2-6-count-everything
+    if flag(solution)
+        hs-source-dirs:   koans/basic/2/6-count-everything/solution
+    else
+        hs-source-dirs:   koans/basic/2/6-count-everything
+
+executable basic-2-6-count-everything
+    import:           exec, basic-2-6-count-everything
+    main-is:          Main.hs
+
+test-suite basic-2-6-count-everything-test
+    import:           test, basic-2-6-count-everything
+    type:             exitcode-stdio-1.0
+    main-is:          Test.hs
+    hs-source-dirs:   koans/basic/2/6-count-everything/test
+
+common basic-2-7-count-everything-nicer
+    if flag(solution)
+        hs-source-dirs:   koans/basic/2/7-count-everything-nicer/solution
+    else
+        hs-source-dirs:   koans/basic/2/7-count-everything-nicer
+
+executable basic-2-7-count-everything-nicer
+    import:           exec, basic-2-7-count-everything-nicer
+    main-is:          Main.hs
+
+test-suite basic-2-7-count-everything-nicer-test
+    import:           test, basic-2-7-count-everything-nicer
+    type:             exitcode-stdio-1.0
+    main-is:          Test.hs
+    hs-source-dirs:   koans/basic/2/7-count-everything-nicer/test
