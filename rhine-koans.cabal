@@ -295,3 +295,35 @@ test-suite basic-2-7-count-everything-nicer-test
     type:             exitcode-stdio-1.0
     main-is:          Test.hs
     hs-source-dirs:   koans/basic/2/7-count-everything-nicer/test
+
+common basic-2-8-dont-count-everything
+    if flag(solution)
+        hs-source-dirs:   koans/basic/2/8-dont-count-everything/solution
+    else
+        hs-source-dirs:   koans/basic/2/8-dont-count-everything
+
+executable basic-2-8-dont-count-everything
+    import:           exec, basic-2-8-dont-count-everything
+    main-is:          Main.hs
+
+test-suite basic-2-8-dont-count-everything-test
+    import:           test, basic-2-8-dont-count-everything
+    type:             exitcode-stdio-1.0
+    main-is:          Test.hs
+    hs-source-dirs:   koans/basic/2/8-dont-count-everything/test
+
+common basic-2-9-modularize
+    if flag(solution)
+        hs-source-dirs:   koans/basic/2/9-modularize/solution
+    else
+        hs-source-dirs:   koans/basic/2/9-modularize
+
+executable basic-2-9-modularize
+    import:           exec, basic-2-9-modularize
+    main-is:          Main.hs
+
+test-suite basic-2-9-modularize-test
+    import:           test, basic-2-9-modularize
+    type:             exitcode-stdio-1.0
+    main-is:          Test.hs
+    hs-source-dirs:   koans/basic/2/9-modularize/test
