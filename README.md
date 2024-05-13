@@ -41,7 +41,8 @@ cabal test basic-1-2-fix-the-bug-test
 
 Again it will fail, and again it is your job to fix it and learn something in the process.
 
-This way, you can go on step by step.
+This way, you can go on step by step, increasing the track, chapter number and koan number (see below).
+
 There are many small programs for you to edit and fix,
 each of which will teach you something new.
 All programs are organised by _tracks_,
@@ -63,6 +64,34 @@ cabal test basic-1-2-fix-the-bug-test
 Currently, only the `basic` track, which will teach you how to write some simple `rhine` programs.
 Stay tuned for further tracks!
 
+### Stuck?
+
+#### Want to figure out what your program is doing?
+Instead of running the test straight ahead,
+you can also run your program you've been writing directly, for example:
+```
+cabal run basic-1-2-fix-the-bug
+```
+
+#### Can't find the solution?
+Have a look at the file `koans/your-track-here/your-chapter-number/your-koan-number-koan-title/solution/Koan.hs`.
+For example, if you can't get `cabal test basic-1-2-fix-the-bug-test` to work,
+you'd be looking for the file `koans/basic/1/2-fix-the-bug/solution/Koan.hs`.
+It contains the solution to this task.
+You can also run the solution by adding the `solution` cabal flag:
+```
+cabal run basic-1-2-fix-the-bug -fsolution
+```
+You can even test the solution:
+```
+cabal test basic-1-2-fix-the-bug-test -fsolution
+```
+
+#### Maybe something is wrong in the `rhine-koans` repo?
+We're glad to hear from you in this case!
+Feel free to file an issue here:
+https://github.com/turion/rhine-koans/issues/new
+
 ## I'd rather read about `rhine` first
 
-You're gladly invited! Have a look at https://github.com/turion/rhine?tab=readme-ov-file#documentation for all the resources available.
+You're heartily invited! Have a look at https://github.com/turion/rhine?tab=readme-ov-file#documentation for all the resources available.
