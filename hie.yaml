@@ -257,3 +257,138 @@ cradle:
 
     - path: "generic/reimport-main/Main.hs"
       component: "rhine-koans:test:basic-2-9-modularize-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:exe:ui-1-gloss-1-circle"
+
+    - path: "generic/test-gloss"
+      component: "rhine-koans:test:ui-1-gloss-1-circle-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:test:ui-1-gloss-1-circle-test"
+
+    - path: "koans/ui/1-gloss/1-circle/test/Test.hs"
+      component: "rhine-koans:test:ui-1-gloss-1-circle-test"
+
+    - path: "koans/ui/1-gloss/1-circle"
+      component: "rhine-koans:test:ui-1-gloss-1-circle-test"
+
+    - path: "koans/ui/1-gloss/1-circle/solution"
+      component: "rhine-koans:test:ui-1-gloss-1-circle-test"
+
+    - path: "koans/ui/1-gloss/1-circle"
+      component: "rhine-koans:exe:ui-1-gloss-1-circle"
+
+    - path: "koans/ui/1-gloss/1-circle/solution"
+      component: "rhine-koans:exe:ui-1-gloss-1-circle"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:exe:ui-1-gloss-2-move"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:test:ui-1-gloss-2-move-test"
+
+    - path: "koans/ui/1-gloss/2-move/test/Test.hs"
+      component: "rhine-koans:test:ui-1-gloss-2-move-test"
+
+    - path: "koans/ui/1-gloss/2-move"
+      component: "rhine-koans:test:ui-1-gloss-2-move-test"
+
+    - path: "koans/ui/1-gloss/2-move/solution"
+      component: "rhine-koans:test:ui-1-gloss-2-move-test"
+
+    - path: "koans/ui/1-gloss/2-move"
+      component: "rhine-koans:exe:ui-1-gloss-2-move"
+
+    - path: "koans/ui/1-gloss/2-move/solution"
+      component: "rhine-koans:exe:ui-1-gloss-2-move"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:exe:ui-1-gloss-3-modularize"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:test:ui-1-gloss-3-modularize-test"
+
+    - path: "koans/ui/1-gloss/3-modularize/test/Test.hs"
+      component: "rhine-koans:test:ui-1-gloss-3-modularize-test"
+
+    - path: "koans/ui/1-gloss/3-modularize"
+      component: "rhine-koans:test:ui-1-gloss-3-modularize-test"
+
+    - path: "koans/ui/1-gloss/3-modularize/solution"
+      component: "rhine-koans:test:ui-1-gloss-3-modularize-test"
+
+    - path: "koans/ui/1-gloss/3-modularize"
+      component: "rhine-koans:exe:ui-1-gloss-3-modularize"
+
+    - path: "koans/ui/1-gloss/3-modularize/solution"
+      component: "rhine-koans:exe:ui-1-gloss-3-modularize"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:exe:ui-1-gloss-4-user-input"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:test:ui-1-gloss-4-user-input-test"
+
+    - path: "koans/ui/1-gloss/4-user-input/test/Test.hs"
+      component: "rhine-koans:test:ui-1-gloss-4-user-input-test"
+
+    - path: "koans/ui/1-gloss/4-user-input"
+      component: "rhine-koans:test:ui-1-gloss-4-user-input-test"
+
+    - path: "koans/ui/1-gloss/4-user-input/solution"
+      component: "rhine-koans:test:ui-1-gloss-4-user-input-test"
+
+    - path: "koans/ui/1-gloss/4-user-input"
+      component: "rhine-koans:exe:ui-1-gloss-4-user-input"
+
+    - path: "koans/ui/1-gloss/4-user-input/solution"
+      component: "rhine-koans:exe:ui-1-gloss-4-user-input"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:exe:ui-1-gloss-5-randomness"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:test:ui-1-gloss-5-randomness-test"
+
+    - path: "koans/ui/1-gloss/5-randomness/test/Test.hs"
+      component: "rhine-koans:test:ui-1-gloss-5-randomness-test"
+
+    - path: "koans/ui/1-gloss/5-randomness"
+      component: "rhine-koans:test:ui-1-gloss-5-randomness-test"
+
+    - path: "koans/ui/1-gloss/5-randomness/solution"
+      component: "rhine-koans:test:ui-1-gloss-5-randomness-test"
+
+    - path: "koans/ui/1-gloss/5-randomness"
+      component: "rhine-koans:exe:ui-1-gloss-5-randomness"
+
+    - path: "koans/ui/1-gloss/5-randomness/solution"
+      component: "rhine-koans:exe:ui-1-gloss-5-randomness"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:exe:ui-1-gloss-6-control-flow"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:test:ui-1-gloss-6-control-flow-test"
+
+    - path: "koans/ui/1-gloss/6-control-flow/test/Test.hs"
+      component: "rhine-koans:test:ui-1-gloss-6-control-flow-test"
+
+    - path: "koans/ui/1-gloss/6-control-flow"
+      component: "rhine-koans:test:ui-1-gloss-6-control-flow-test"
+
+    - path: "koans/ui/1-gloss/6-control-flow/solution"
+      component: "rhine-koans:test:ui-1-gloss-6-control-flow-test"
+
+    - path: "koans/ui/1-gloss/6-control-flow"
+      component: "rhine-koans:exe:ui-1-gloss-6-control-flow"
+
+    - path: "koans/ui/1-gloss/6-control-flow/solution"
+      component: "rhine-koans:exe:ui-1-gloss-6-control-flow"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:exe:ui-1-gloss-snake"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:test:ui-1-gloss-snake-test"

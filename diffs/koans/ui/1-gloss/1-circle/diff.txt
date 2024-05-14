@@ -1,0 +1,2 @@
+<   constMCl (paintAllIO _) -- paintAllIO clears the drawing canvas and draws the given image
+>   constMCl (paintAllIO (circleSolid 10)) -- paintAllIO clears the drawing canvas and draws the given image

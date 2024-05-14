@@ -242,4 +242,5 @@ Manuel (he/him), turion on Discord/Discourse/Github/..., turion@types.pl on Mast
 * Websocket clock: `https://hackage.haskell.org/package/wuss`
 * Webserver: `https://hackage.haskell.org/package/wai`
 * Machine learning: `https://hackage.haskell.org/package/rhine-bayes`
+* Port the snake to `rhine-terminal`
 * Challenge: Rhine entry in https://github.com/gelisam/frp-zoo
