@@ -1,0 +1,259 @@
+cradle:
+  cabal:
+    - path: "generic/test-io"
+      component: "rhine-koans:lib:test-io"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:exe:basic-1-1-hello-rhine"
+
+    - path: "koans/basic/1/1-hello-rhine/Koan.hs"
+      component: "rhine-koans:exe:basic-1-1-hello-rhine"
+
+    - path: "koans/basic/1/1-hello-rhine/solution/Koan.hs"
+      component: "rhine-koans:exe:basic-1-1-hello-rhine"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:test:basic-1-1-hello-rhine-test"
+
+    - path: "koans/basic/1/1-hello-rhine/test/Test.hs"
+      component: "rhine-koans:test:basic-1-1-hello-rhine-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:exe:basic-1-2-fix-the-bug"
+
+    - path: "koans/basic/1/2-fix-the-bug/Koan.hs"
+      component: "rhine-koans:exe:basic-1-2-fix-the-bug"
+
+    - path: "koans/basic/1/2-fix-the-bug/solution/Koan.hs"
+      component: "rhine-koans:exe:basic-1-2-fix-the-bug"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:test:basic-1-2-fix-the-bug-test"
+
+    - path: "koans/basic/1/2-fix-the-bug/test/Test.hs"
+      component: "rhine-koans:test:basic-1-2-fix-the-bug-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:exe:basic-1-3-faster"
+
+    - path: "koans/basic/1/3-faster/Koan.hs"
+      component: "rhine-koans:exe:basic-1-3-faster"
+
+    - path: "koans/basic/1/3-faster/solution/Koan.hs"
+      component: "rhine-koans:exe:basic-1-3-faster"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:test:basic-1-3-faster-test"
+
+    - path: "koans/basic/1/3-faster/test/Test.hs"
+      component: "rhine-koans:test:basic-1-3-faster-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:exe:basic-1-4-compose"
+
+    - path: "koans/basic/1/4-compose/Koan.hs"
+      component: "rhine-koans:exe:basic-1-4-compose"
+
+    - path: "koans/basic/1/4-compose/solution/Koan.hs"
+      component: "rhine-koans:exe:basic-1-4-compose"
+
+    - path: "koans/basic/1/4-compose/test/Test.hs"
+      component: "rhine-koans:test:basic-1-4-compose-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:test:basic-1-4-compose-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:exe:basic-1-5-compose-more"
+
+    - path: "koans/basic/1/5-compose-more/Koan.hs"
+      component: "rhine-koans:exe:basic-1-5-compose-more"
+
+    - path: "koans/basic/1/5-compose-more/solution/Koan.hs"
+      component: "rhine-koans:exe:basic-1-5-compose-more"
+
+    - path: "koans/basic/1/5-compose-more/test/Test.hs"
+      component: "rhine-koans:test:basic-1-5-compose-more-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:test:basic-1-5-compose-more-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:exe:basic-1-6-compose-signal-functions-and-clocks"
+
+    - path: "koans/basic/1/6-compose-signal-functions-and-clocks/Koan.hs"
+      component: "rhine-koans:exe:basic-1-6-compose-signal-functions-and-clocks"
+
+    - path: "koans/basic/1/6-compose-signal-functions-and-clocks/solution/Koan.hs"
+      component: "rhine-koans:exe:basic-1-6-compose-signal-functions-and-clocks"
+
+    - path: "koans/basic/1/6-compose-signal-functions-and-clocks/test/Test.hs"
+      component: "rhine-koans:test:basic-1-6-compose-signal-functions-and-clocks-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:test:basic-1-6-compose-signal-functions-and-clocks-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:exe:basic-1-7-compose-on-the-same-clock"
+
+    - path: "koans/basic/1/7-compose-on-the-same-clock/Koan.hs"
+      component: "rhine-koans:exe:basic-1-7-compose-on-the-same-clock"
+
+    - path: "koans/basic/1/7-compose-on-the-same-clock/solution/Koan.hs"
+      component: "rhine-koans:exe:basic-1-7-compose-on-the-same-clock"
+
+    - path: "koans/basic/1/7-compose-on-the-same-clock/test/Test.hs"
+      component: "rhine-koans:test:basic-1-7-compose-on-the-same-clock-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:test:basic-1-7-compose-on-the-same-clock-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:exe:basic-1-8-compose-on-different-clocks"
+
+    - path: "koans/basic/1/8-compose-on-different-clocks/Koan.hs"
+      component: "rhine-koans:exe:basic-1-8-compose-on-different-clocks"
+
+    - path: "koans/basic/1/8-compose-on-different-clocks/solution/Koan.hs"
+      component: "rhine-koans:exe:basic-1-8-compose-on-different-clocks"
+
+    - path: "koans/basic/1/8-compose-on-different-clocks/test/Test.hs"
+      component: "rhine-koans:test:basic-1-8-compose-on-different-clocks-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:test:basic-1-8-compose-on-different-clocks-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:exe:basic-2-1-input"
+
+    - path: "koans/basic/2/1-input/Koan.hs"
+      component: "rhine-koans:exe:basic-2-1-input"
+
+    - path: "koans/basic/2/1-input/solution/Koan.hs"
+      component: "rhine-koans:exe:basic-2-1-input"
+
+    - path: "koans/basic/2/1-input/test/Test.hs"
+      component: "rhine-koans:test:basic-2-1-input-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:test:basic-2-1-input-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:exe:basic-2-2-count-the-words"
+
+    - path: "koans/basic/2/2-count-the-words/Koan.hs"
+      component: "rhine-koans:exe:basic-2-2-count-the-words"
+
+    - path: "koans/basic/2/2-count-the-words/solution/Koan.hs"
+      component: "rhine-koans:exe:basic-2-2-count-the-words"
+
+    - path: "koans/basic/2/2-count-the-words/test/Test.hs"
+      component: "rhine-koans:test:basic-2-2-count-the-words-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:test:basic-2-2-count-the-words-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:exe:basic-2-3-count-the-lines"
+
+    - path: "koans/basic/2/3-count-the-lines/Koan.hs"
+      component: "rhine-koans:exe:basic-2-3-count-the-lines"
+
+    - path: "koans/basic/2/3-count-the-lines/solution/Koan.hs"
+      component: "rhine-koans:exe:basic-2-3-count-the-lines"
+
+    - path: "koans/basic/2/3-count-the-lines/test/Test.hs"
+      component: "rhine-koans:test:basic-2-3-count-the-lines-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:test:basic-2-3-count-the-lines-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:exe:basic-2-4-count-all-the-words"
+
+    - path: "koans/basic/2/4-count-all-the-words/Koan.hs"
+      component: "rhine-koans:exe:basic-2-4-count-all-the-words"
+
+    - path: "koans/basic/2/4-count-all-the-words/solution/Koan.hs"
+      component: "rhine-koans:exe:basic-2-4-count-all-the-words"
+
+    - path: "koans/basic/2/4-count-all-the-words/test/Test.hs"
+      component: "rhine-koans:test:basic-2-4-count-all-the-words-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:test:basic-2-4-count-all-the-words-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:exe:basic-2-5-count-all-the-chars"
+
+    - path: "koans/basic/2/5-count-all-the-chars/Koan.hs"
+      component: "rhine-koans:exe:basic-2-5-count-all-the-chars"
+
+    - path: "koans/basic/2/5-count-all-the-chars/solution/Koan.hs"
+      component: "rhine-koans:exe:basic-2-5-count-all-the-chars"
+
+    - path: "koans/basic/2/5-count-all-the-chars/test/Test.hs"
+      component: "rhine-koans:test:basic-2-5-count-all-the-chars-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:test:basic-2-5-count-all-the-chars-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:exe:basic-2-6-count-everything"
+
+    - path: "koans/basic/2/6-count-everything/Koan.hs"
+      component: "rhine-koans:exe:basic-2-6-count-everything"
+
+    - path: "koans/basic/2/6-count-everything/solution/Koan.hs"
+      component: "rhine-koans:exe:basic-2-6-count-everything"
+
+    - path: "koans/basic/2/6-count-everything/test/Test.hs"
+      component: "rhine-koans:test:basic-2-6-count-everything-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:test:basic-2-6-count-everything-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:exe:basic-2-7-count-everything-nicer"
+
+    - path: "koans/basic/2/7-count-everything-nicer/Koan.hs"
+      component: "rhine-koans:exe:basic-2-7-count-everything-nicer"
+
+    - path: "koans/basic/2/7-count-everything-nicer/solution/Koan.hs"
+      component: "rhine-koans:exe:basic-2-7-count-everything-nicer"
+
+    - path: "koans/basic/2/7-count-everything-nicer/test/Test.hs"
+      component: "rhine-koans:test:basic-2-7-count-everything-nicer-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:test:basic-2-7-count-everything-nicer-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:exe:basic-2-8-dont-count-everything"
+
+    - path: "koans/basic/2/8-dont-count-everything/Koan.hs"
+      component: "rhine-koans:exe:basic-2-8-dont-count-everything"
+
+    - path: "koans/basic/2/8-dont-count-everything/solution/Koan.hs"
+      component: "rhine-koans:exe:basic-2-8-dont-count-everything"
+
+    - path: "koans/basic/2/8-dont-count-everything/test/Test.hs"
+      component: "rhine-koans:test:basic-2-8-dont-count-everything-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:test:basic-2-8-dont-count-everything-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:exe:basic-2-9-modularize"
+
+    - path: "koans/basic/2/9-modularize/Koan.hs"
+      component: "rhine-koans:exe:basic-2-9-modularize"
+
+    - path: "koans/basic/2/9-modularize/solution/Koan.hs"
+      component: "rhine-koans:exe:basic-2-9-modularize"
+
+    - path: "koans/basic/2/9-modularize/test/Test.hs"
+      component: "rhine-koans:test:basic-2-9-modularize-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:test:basic-2-9-modularize-test"
