@@ -329,3 +329,25 @@ test-suite basic-2-9-modularize-test
     type:             exitcode-stdio-1.0
     main-is:          Test.hs
     hs-source-dirs:   koans/basic/2/9-modularize/test
+
+common gloss
+    build-depends:
+        rhine-gloss,
+        transformers ^>= 0.6
+
+common ui-1-gloss-1-square
+    import:           gloss
+    if flag(solution)
+        hs-source-dirs:   koans/ui/1-gloss/1-square/solution
+    else
+        hs-source-dirs:   koans/ui/1-gloss/1-square
+
+executable ui-1-gloss-1-square
+    import:           exec, ui-1-gloss-1-square
+    main-is:          Main.hs
+
+test-suite ui-1-gloss-1-square-test
+    import:           test, ui-1-gloss-1-square
+    type:             exitcode-stdio-1.0
+    main-is:          Test.hs
+    hs-source-dirs:   koans/ui/1-gloss/1-square/test

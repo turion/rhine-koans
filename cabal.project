@@ -1,2 +1,8 @@
 test-show-details: direct
 packages: rhine-koans.cabal
+
+source-repository-package
+    type: git
+    location: https://github.com/turion/rhine.git
+    tag: 1a0f8f63
+    subdir: rhine-gloss
