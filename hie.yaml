@@ -125,3 +125,24 @@ cradle:
 
     - path: "koans/ui/1-gloss/1-square/solution"
       component: "rhine-koans:exe:ui-1-gloss-1-square"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:exe:ui-1-gloss-snake"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:test:ui-1-gloss-snake-test"
+
+    - path: "koans/ui/1-gloss/snake/test"
+      component: "rhine-koans:test:ui-1-gloss-snake-test"
+
+    - path: "koans/ui/1-gloss/snake"
+      component: "rhine-koans:test:ui-1-gloss-snake-test"
+
+    - path: "koans/ui/1-gloss/snake/solution"
+      component: "rhine-koans:test:ui-1-gloss-snake-test"
+
+    - path: "koans/ui/1-gloss/snake"
+      component: "rhine-koans:exe:ui-1-gloss-snake"
+
+    - path: "koans/ui/1-gloss/snake/solution"
+      component: "rhine-koans:exe:ui-1-gloss-snake"
