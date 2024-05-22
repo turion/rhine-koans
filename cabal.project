@@ -1,8 +1,9 @@
 test-show-details: direct
 packages: rhine-koans.cabal
-
-source-repository-package
-    type: git
-    location: https://github.com/turion/rhine.git
-    tag: 1a0f8f63
-    subdir: rhine-gloss
+          ../rhine/rhine-gloss/rhine-gloss.cabal
+          ../monad-schedule/monad-schedule.cabal
+-- source-repository-package
+--     type: git
+--     location: https://github.com/turion/rhine.git
+--     tag: d2ae786e59618f51650dc7bbd7acc5d388d37586
+--     subdir: rhine-gloss

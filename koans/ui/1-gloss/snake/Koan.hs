@@ -1,7 +1,15 @@
 {-# LANGUAGE Arrows #-}
+{-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE TemplateHaskell #-}
 
 module Koan where
+
+-- base
+import Data.List.NonEmpty hiding (unfold)
+import Data.Maybe (fromMaybe)
+
+-- time
+import Data.Time.Clock
 
 -- lens
 import Control.Lens
@@ -13,7 +21,6 @@ import Data.Stream.Result
 import FRP.Rhine
 
 -- rhine-gloss
-import Data.List.NonEmpty hiding (unfold)
 import FRP.Rhine.Gloss
 
 data Position = Position
@@ -37,6 +44,7 @@ stepPosition West = (<> Position (-1) 0)
 stepPosition South = (<> Position 0 (-1))
 
 data Turn = Stay | TurnRight | TurnLeft
+  deriving Show
 
 changeDirection :: Turn -> Direction -> Direction
 changeDirection Stay direction = direction
@@ -76,21 +84,41 @@ stepSnake turn eat snake =
     tailAfterMeal Eat = toList . _body
 
 renderPosition :: Position -> Picture
-renderPosition Position { x, y} = translate (fromIntegral x) (fromIntegral y) $ circleSolid 1
+renderPosition Position {x, y} = translate (fromIntegral x) (fromIntegral y) $ circleSolid 1
 
 renderSnake :: Snake -> Picture
 renderSnake = foldMap renderPosition . (^. body)
 
-type SnakeClock = Millisecond 500
+type SnakeClock m = IOClock m (Millisecond 1000)
 
-snake :: ClSF m SnakeClock Turn Snake
+snakeClock :: (MonadIO m) => SnakeClock m
+snakeClock = ioClock waitClock
+
+snake :: (Applicative m) => ClSF m (SnakeClock m) Turn Snake
 snake = unfold (snek North mempty) $ \turn s -> let s' = stepSnake turn DontEat s in Result s' s'
 
-rhine :: Rhine (GlossConcT IO) (SeqClock GlossSimClockIO SnakeClock) () ()
-rhine = _
+visualize :: (Monad m, MonadIO m) => BehaviourF (GlossConcT m) UTCTime Picture ()
+visualize = arrMCl $ scale 10 10 >>> paintAllIO
 
+type UserClock = SelectClock GlossEventClockIO Turn
+
+userClock :: UserClock
+userClock =
+  SelectClock
+    { mainClock = GlossEventClockIO
+    , select = \case
+        (EventKey (SpecialKey KeyRight) Down _ _) -> Just TurnRight
+        (EventKey (SpecialKey KeyLeft) Down _ _) -> Just TurnLeft
+        _ -> Nothing
+    }
+
+user :: (Monad m, MonadIO m) => ClSF m (GlossClockUTC UserClock) () Turn
+user = tagS
+
+rhine = user @@ glossClockUTC userClock >-- fifoBounded 1000 --> (arr (fromMaybe Stay) >-> snake >-> arr renderSnake @@ snakeClock) >-- keepLast mempty --> visualize @@ glossClockUTC GlossSimClockIO
 
 -- FIXME excavate the PR that makes gloss clocks UTCTime
+
 -- | Rescale the gloss clocks so they will be compatible with real 'UTCTime' (needed for compatibility with 'Millisecond')
 type GlossClockUTC cl = RescaledClockS (GlossConcT IO) cl UTCTime (Tag cl)
 
@@ -98,11 +126,11 @@ glossClockUTC :: (Real (Time cl)) => cl -> GlossClockUTC cl
 glossClockUTC cl =
   RescaledClockS
     { unscaledClockS = cl
-    , rescaleS = proc (timePassed, event) -> do
-        initTime <- onStart_ $ liftIO getCurrentTime -< ()
-        returnA -< (addUTCTime (realToFrac timePassed) initTime, event)
+    , rescaleS = const $ do
+        now <- liftIO getCurrentTime
+        return (arr $ \(timePassed, event) -> (addUTCTime (realToFrac timePassed) now, event), now)
     }
 
--- Make sure to keep this definition here as it is: The tests depend on it.
 main :: IO ()
+-- Make sure to keep this definition here as it is: The tests depend on it.
 main = flowGlossIO defaultSettings rhine
