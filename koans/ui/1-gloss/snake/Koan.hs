@@ -15,9 +15,6 @@ import System.Random
 -- MonadRandom
 import Control.Monad.Random
 
--- lens
-import Control.Lens
-
 -- containers
 import Data.Set hiding (toList)
 
@@ -72,40 +69,48 @@ changeDirection TurnLeft direction = toEnum $ (fromEnum direction + 1) `mod` 4
 data Eat = Eat | DontEat
 
 data Snake = Snake
-  { _direction :: Direction
-  , _body :: NonEmpty Position
+  { direction :: Direction
+  , body :: NonEmpty Position
   }
 
-makeLenses ''Snake
-
+-- | A small snake.
 snek :: Direction -> Position -> Snake
-snek _direction tinyBody =
+snek direction tinyBody =
   Snake
-    { _direction
-    , _body = pure tinyBody
+    { direction
+    , body = pure tinyBody
     }
 
 stepSnake :: Turn -> Eat -> Snake -> Snake
 stepSnake turn eat snake =
   let
-    newDirection = changeDirection turn $ _direction snake
-    newHead = stepPosition newDirection $ Data.List.NonEmpty.head $ _body snake
+    newDirection = changeDirection turn $ direction snake
+    newHead = stepPosition newDirection $ Data.List.NonEmpty.head $ body snake
     newTail = tailAfterMeal eat snake
    in
     Snake
-      { _direction = newDirection
-      , _body = newHead :| newTail
+      { direction = newDirection
+      , body = newHead :| newTail
       }
   where
     tailAfterMeal :: Eat -> Snake -> [Position]
-    tailAfterMeal DontEat = Data.List.NonEmpty.init . _body
-    tailAfterMeal Eat = toList . _body
+    tailAfterMeal DontEat = Data.List.NonEmpty.init . body
+    tailAfterMeal Eat = toList . body
 
 renderPosition :: Position -> Picture
 renderPosition Position {x, y} = translate (fromIntegral x) (fromIntegral y) $ circleSolid 0.6
 
 renderSnake :: Snake -> Picture
-renderSnake = foldMap renderPosition . (^. body)
+renderSnake = foldMap renderPosition . body
+
+type SnakeClock = GlossConcTClock IO (Millisecond 500)
+
+snakeClock :: SnakeClock
+snakeClock = glossConcTClock waitClock
+
+snakeSF :: ClSF GlossConc SnakeClock (Turn, Eat) Snake
+snakeSF = unfold (snek North mempty) $ \(turn, eat) s -> let s' = stepSnake turn eat s in Result s' s'
+
 
 newtype Apple = Apple {getApple :: Position}
   deriving (Eq, Ord)
@@ -119,32 +124,36 @@ newApple = proc _ -> do
 
 type Apples = Set Apple
 
-applesSF :: ClSF GlossConc SnakeClock Apple (Apples, Eat)
-applesSF = feedback empty $ proc (eatenApple, oldApples) -> do
-  addedApple <- evalRandIOS' newApple -< ()
+addAndEatApple ::
+  -- | Possibly a new apple appeared
+  Maybe Apple ->
+  -- | On this position the snake attempted to eat the apple
+  Position ->
+  -- | The previous collection of apples
+  Apples ->
+  (Apples, Eat)
+addAndEatApple addedApple eatPosition oldApples =
   let addedApples = maybe oldApples (`insert` oldApples) addedApple
-      newApples = delete eatenApple addedApples
-  returnA -< ((newApples, if size newApples < size addedApples then Eat else DontEat), newApples)
+      newApples = delete (Apple eatPosition) addedApples
+   in (newApples, if size newApples < size addedApples then Eat else DontEat)
+
+applesSF :: ClSF GlossConc SnakeClock Position (Apples, Eat)
+applesSF = feedback empty $ proc (eatPosition, oldApples) -> do
+  addedApple <- evalRandIOS' newApple -< ()
+  let (newApples, eat) = addAndEatApple addedApple eatPosition oldApples
+  returnA -< ((newApples, eat), newApples)
 
 renderApple :: Apple -> Picture
 renderApple = color red . renderPosition . getApple
 
-type SnakeClock = GlossConcTClock IO (Millisecond 500)
-
-snakeClock :: SnakeClock
-snakeClock = glossConcTClock waitClock
-
-snakeSF :: ClSF GlossConc SnakeClock (Turn, Eat) Snake
-snakeSF = unfold (snek North mempty) $ \(turn, eat) s -> let s' = stepSnake turn eat s in Result s' s'
-
 snakeAndApples :: ClSF GlossConc SnakeClock Turn (Snake, Apples)
 snakeAndApples = feedback DontEat $ proc (turn, eat) -> do
   snake <- snakeSF -< (turn, eat)
-  (apples, eatNext) <- applesSF -< Apple $ head $ _body snake
+  (apples, eatNext) <- applesSF -< head $ body snake
   returnA -< ((snake, apples), eatNext)
 
 illegal :: Snake -> Bool
-illegal Snake {_body = head@Position {x, y} :| tail} =
+illegal Snake {body = head@Position {x, y} :| tail} =
   head `elem` tail
     || x < (-boardSize)
     || x > boardSize
