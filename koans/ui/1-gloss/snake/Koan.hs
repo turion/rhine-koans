@@ -5,34 +5,52 @@
 module Koan where
 
 -- base
-import Data.List.NonEmpty hiding (unfold)
+import Data.List.NonEmpty hiding (insert, unfold)
 import Data.Maybe (fromMaybe)
+import GHC.Generics
 
--- time
-import Data.Time.Clock
+-- random
+import System.Random
+
+-- MonadRandom
+import Control.Monad.Random
 
 -- lens
 import Control.Lens
 
--- automaton
-import Data.Stream.Result
+-- containers
+import Data.Set hiding (toList)
 
 -- rhine
 import FRP.Rhine
 
 -- rhine-gloss
 import FRP.Rhine.Gloss
+import System.Random.Stateful (UniformRange (..))
+import Prelude hiding (head)
 
 data Position = Position
   { x :: Int
   , y :: Int
   }
+  deriving (Generic, Eq, Ord)
 
 instance Semigroup Position where
   Position x1 y1 <> Position x2 y2 = Position (x1 + x2) (y1 + y2)
 
 instance Monoid Position where
   mempty = Position 0 0
+
+-- | To generate random apple positions
+instance Uniform Position
+
+instance UniformRange Position where
+  uniformRM (Position xLow yLow, Position xHigh yHigh) g = Position <$> uniformRM (xLow, xHigh) g <*> uniformRM (yLow, yHigh) g
+
+instance Random Position
+
+boardSize :: Int
+boardSize = 20
 
 data Direction = East | North | West | South
   deriving (Enum)
@@ -44,7 +62,7 @@ stepPosition West = (<> Position (-1) 0)
 stepPosition South = (<> Position 0 (-1))
 
 data Turn = Stay | TurnRight | TurnLeft
-  deriving Show
+  deriving (Show)
 
 changeDirection :: Turn -> Direction -> Direction
 changeDirection Stay direction = direction
@@ -84,52 +102,92 @@ stepSnake turn eat snake =
     tailAfterMeal Eat = toList . _body
 
 renderPosition :: Position -> Picture
-renderPosition Position {x, y} = translate (fromIntegral x) (fromIntegral y) $ circleSolid 1
+renderPosition Position {x, y} = translate (fromIntegral x) (fromIntegral y) $ circleSolid 0.6
 
 renderSnake :: Snake -> Picture
 renderSnake = foldMap renderPosition . (^. body)
 
-type SnakeClock m = IOClock m (Millisecond 1000)
+newtype Apple = Apple {getApple :: Position}
+  deriving (Eq, Ord)
 
-snakeClock :: (MonadIO m) => SnakeClock m
-snakeClock = ioClock waitClock
+newApple :: (MonadRandom m) => ClSF m SnakeClock () (Maybe Apple)
+newApple = proc _ -> do
+  nSteps :: Int <- count -< ()
+  if nSteps `mod` 10 == 0
+    then arr (Just <<< Apple) <<< getRandomRS -< (Position (-10) (-10), Position 10 10)
+    else returnA -< Nothing
 
-snake :: (Applicative m) => ClSF m (SnakeClock m) Turn Snake
-snake = unfold (snek North mempty) $ \turn s -> let s' = stepSnake turn DontEat s in Result s' s'
+type Apples = Set Apple
 
-visualize :: (Monad m, MonadIO m) => BehaviourF (GlossConcT m) UTCTime Picture ()
+applesSF :: ClSF GlossConc SnakeClock Apple (Apples, Eat)
+applesSF = feedback empty $ proc (eatenApple, oldApples) -> do
+  addedApple <- evalRandIOS' newApple -< ()
+  let addedApples = maybe oldApples (`insert` oldApples) addedApple
+      newApples = delete eatenApple addedApples
+  returnA -< ((newApples, if size newApples < size addedApples then Eat else DontEat), newApples)
+
+renderApple :: Apple -> Picture
+renderApple = color red . renderPosition . getApple
+
+type SnakeClock = GlossConcTClock IO (Millisecond 500)
+
+snakeClock :: SnakeClock
+snakeClock = glossConcTClock waitClock
+
+snakeSF :: ClSF GlossConc SnakeClock (Turn, Eat) Snake
+snakeSF = unfold (snek North mempty) $ \(turn, eat) s -> let s' = stepSnake turn eat s in Result s' s'
+
+snakeAndApples :: ClSF GlossConc SnakeClock Turn (Snake, Apples)
+snakeAndApples = feedback DontEat $ proc (turn, eat) -> do
+  snake <- snakeSF -< (turn, eat)
+  (apples, eatNext) <- applesSF -< Apple $ head $ _body snake
+  returnA -< ((snake, apples), eatNext)
+
+illegal :: Snake -> Bool
+illegal Snake {_body = head@Position {x, y} :| tail} =
+  head `elem` tail
+    || x < (-boardSize)
+    || x > boardSize
+    || y < (-boardSize)
+    || y > boardSize
+
+game :: ClSF GlossConc SnakeClock Turn (Maybe (Snake, Apples))
+game = safely $ do
+  try $ liftClSF snakeAndApples >>> throwOnCond (fst >>> illegal) () >>> arr Just
+  safe $ pure Nothing
+
+render :: Maybe (Snake, Apples) -> Picture
+render (Just (snake, apples)) = renderSnake snake <> foldMap renderApple apples
+render Nothing = gameover
+
+gameover :: Picture
+gameover = translate (-10) 0 $ scale 0.03 0.03 $ text "Game over!"
+
+visualize :: BehaviourF GlossConc UTCTime Picture ()
 visualize = arrMCl $ scale 10 10 >>> paintAllIO
 
-type UserClock = SelectClock GlossEventClockIO Turn
+type VisualizationClock = GlossClockUTC IO GlossSimClockIO
+
+visualizationClock :: VisualizationClock
+visualizationClock = glossClockUTC GlossSimClockIO
+
+type UserClock = GlossClockUTC IO (SelectClock GlossEventClockIO Turn)
 
 userClock :: UserClock
 userClock =
-  SelectClock
-    { mainClock = GlossEventClockIO
-    , select = \case
-        (EventKey (SpecialKey KeyRight) Down _ _) -> Just TurnRight
-        (EventKey (SpecialKey KeyLeft) Down _ _) -> Just TurnLeft
-        _ -> Nothing
-    }
+  glossClockUTC $
+    SelectClock
+      { mainClock = GlossEventClockIO
+      , select = \case
+          (EventKey (SpecialKey KeyRight) Down _ _) -> Just TurnRight
+          (EventKey (SpecialKey KeyLeft) Down _ _) -> Just TurnLeft
+          _ -> Nothing
+      }
 
-user :: (Monad m, MonadIO m) => ClSF m (GlossClockUTC UserClock) () Turn
+user :: ClSF GlossConc UserClock () Turn
 user = tagS
 
-rhine = user @@ glossClockUTC userClock >-- fifoBounded 1000 --> (arr (fromMaybe Stay) >-> snake >-> arr renderSnake @@ snakeClock) >-- keepLast mempty --> visualize @@ glossClockUTC GlossSimClockIO
-
--- FIXME excavate the PR that makes gloss clocks UTCTime
-
--- | Rescale the gloss clocks so they will be compatible with real 'UTCTime' (needed for compatibility with 'Millisecond')
-type GlossClockUTC cl = RescaledClockS (GlossConcT IO) cl UTCTime (Tag cl)
-
-glossClockUTC :: (Real (Time cl)) => cl -> GlossClockUTC cl
-glossClockUTC cl =
-  RescaledClockS
-    { unscaledClockS = cl
-    , rescaleS = const $ do
-        now <- liftIO getCurrentTime
-        return (arr $ \(timePassed, event) -> (addUTCTime (realToFrac timePassed) now, event), now)
-    }
+rhine = user @@ userClock >-- fifoBounded 1000 --> (arr (fromMaybe Stay) >-> game >-> arr render @@ snakeClock) >-- keepLast mempty --> visualize @@ visualizationClock
 
 main :: IO ()
 -- Make sure to keep this definition here as it is: The tests depend on it.

@@ -1,7 +1,8 @@
 test-show-details: direct
 packages: rhine-koans.cabal
           ../rhine/rhine-gloss/rhine-gloss.cabal
-          ../monad-schedule/monad-schedule.cabal
+          ../rhine/rhine/rhine.cabal
+          ../rhine/automaton/automaton.cabal
 -- source-repository-package
 --     type: git
 --     location: https://github.com/turion/rhine.git
