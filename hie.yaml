@@ -106,25 +106,25 @@ cradle:
       component: "rhine-koans:test:basic-2-9-modularize-test"
 
     - path: "generic/reimport-main/Main.hs"
-      component: "rhine-koans:exe:ui-1-gloss-1-square"
+      component: "rhine-koans:exe:ui-1-gloss-1-circle"
 
     - path: "generic/reimport-main/Main.hs"
-      component: "rhine-koans:test:ui-1-gloss-1-square-test"
+      component: "rhine-koans:test:ui-1-gloss-1-circle-test"
 
-    - path: "koans/ui/1-gloss/1-square/test"
-      component: "rhine-koans:test:ui-1-gloss-1-square-test"
+    - path: "koans/ui/1-gloss/1-circle/test"
+      component: "rhine-koans:test:ui-1-gloss-1-circle-test"
 
-    - path: "koans/ui/1-gloss/1-square"
-      component: "rhine-koans:test:ui-1-gloss-1-square-test"
+    - path: "koans/ui/1-gloss/1-circle"
+      component: "rhine-koans:test:ui-1-gloss-1-circle-test"
 
-    - path: "koans/ui/1-gloss/1-square/solution"
-      component: "rhine-koans:test:ui-1-gloss-1-square-test"
+    - path: "koans/ui/1-gloss/1-circle/solution"
+      component: "rhine-koans:test:ui-1-gloss-1-circle-test"
 
-    - path: "koans/ui/1-gloss/1-square"
-      component: "rhine-koans:exe:ui-1-gloss-1-square"
+    - path: "koans/ui/1-gloss/1-circle"
+      component: "rhine-koans:exe:ui-1-gloss-1-circle"
 
-    - path: "koans/ui/1-gloss/1-square/solution"
-      component: "rhine-koans:exe:ui-1-gloss-1-square"
+    - path: "koans/ui/1-gloss/1-circle/solution"
+      component: "rhine-koans:exe:ui-1-gloss-1-circle"
 
     - path: "generic/reimport-main/Main.hs"
       component: "rhine-koans:exe:ui-1-gloss-snake"
