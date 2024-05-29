@@ -2,6 +2,8 @@
 
 Let's draw something!
 Rhine connects to the famous gloss library for 2d graphics.
+
+...
 -}
 module Koan where
 
@@ -13,9 +15,9 @@ import FRP.Rhine.Gloss
 
 -- | The main 'Rhine' of this program.
 rhine :: Rhine (GlossConcT IO) GlossSimClockIO () ()
--- Can you create a solid circle of radius 0.6 here?
+-- Can you create a solid circle of radius 10 here?
 -- Have a look at https://hackage.haskell.org/package/gloss/docs/Graphics-Gloss-Data-Picture.html for inspiration.
-rhine = constMCl (paintAllIO (circleSolid 0.6)) @@ GlossSimClockIO
+rhine = constMCl (paintAllIO (circleSolid 10)) @@ GlossSimClockIO
 
 main :: IO ()
 -- Make sure to keep this definition here as it is: The tests depend on it.

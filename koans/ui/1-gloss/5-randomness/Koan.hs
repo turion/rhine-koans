@@ -152,7 +152,7 @@ gameClock :: GameClock
 gameClock = glossConcTClock waitClock
 
 snakeSF :: ClSF GlossConc GameClock (Turn, Eat) Snake
-snakeSF = unfold_ (snek North mempty) $ \(turn, eat) s -> stepSnake turn eat s
+snakeSF = unfold (snek North mempty) $ \(turn, eat) s -> let s' = stepSnake turn eat s in Result s' s'
 
 applesSF :: ClSF GlossConc GameClock Position (Apples, Eat)
 applesSF = feedback empty $ proc (eatPosition, oldApples) -> do

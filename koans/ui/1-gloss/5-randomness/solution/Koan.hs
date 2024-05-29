@@ -2,6 +2,8 @@
 {-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE TemplateHaskell #-}
 
+{- | Randomness.
+-}
 module Koan where
 
 -- base
@@ -160,32 +162,14 @@ applesSF = feedback empty $ proc (eatPosition, oldApples) -> do
   let (newApples, eat) = addAndEatApple addedApple eatPosition oldApples
   returnA -< ((newApples, eat), newApples)
 
-snakeAndApples :: ClSF GlossConc GameClock Turn (Snake, Apples)
-snakeAndApples = feedback DontEat $ proc (turn, eat) -> do
+game :: ClSF GlossConc GameClock Turn (Snake, Apples)
+game = feedback DontEat $ proc (turn, eat) -> do
   snake <- snakeSF -< (turn, eat)
   (apples, eatNext) <- applesSF -< head $ body snake
   returnA -< ((snake, apples), eatNext)
 
--- | Whether a snake hits the boundaries or bites itself
-illegal :: Snake -> Bool
-illegal Snake {body = head@Position {x, y} :| tail} =
-  head `elem` tail
-    || x < (-boardSize)
-    || x > boardSize
-    || y < (-boardSize)
-    || y > boardSize
-
-game :: ClSF GlossConc GameClock Turn (Maybe (Snake, Apples))
-game = safely $ do
-  try $ liftClSF snakeAndApples >>> throwOnCond (fst >>> illegal) () >>> arr Just
-  safe $ pure Nothing
-
-render :: Maybe (Snake, Apples) -> Picture
-render (Just (snake, apples)) = renderSnake snake <> foldMap renderApple apples
-render Nothing = gameover
-
-gameover :: Picture
-gameover = translate (-10) 0 $ scale 0.03 0.03 $ text "Game over!"
+render :: (Snake, Apples) -> Picture
+render (snake, apples) = renderSnake snake <> foldMap renderApple apples
 
 -- | Scale and paint a gloss picture
 visualize :: BehaviourF GlossConc UTCTime Picture ()
