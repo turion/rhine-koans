@@ -58,6 +58,14 @@ library test-io
         silently ^>= 1.2
       , temporary ^>= 1.3
 
+library test-gloss
+    import:           opts
+    hs-source-dirs:   generic/test-gloss
+    exposed-modules:  TestGloss
+    build-depends:
+        rhine-gloss,
+        monad-schedule ^>= 0.2
+
 common basic-1-1-hello-rhine
     if flag(solution)
         hs-source-dirs:   koans/basic/1/1-hello-rhine/solution
@@ -329,3 +337,142 @@ test-suite basic-2-9-modularize-test
     type:             exitcode-stdio-1.0
     main-is:          Test.hs
     hs-source-dirs:   koans/basic/2/9-modularize/test
+
+common gloss
+    build-depends:
+        rhine-gloss,
+        transformers ^>= 0.6,
+        random ^>= 1.2,
+        MonadRandom ^>= 0.6,
+        containers ^>= 0.6,
+        monad-schedule ^>= 0.2,
+        rhine-koans:test-gloss
+
+common ui-1-gloss-1-circle
+    import:           gloss
+    if flag(solution)
+        hs-source-dirs:   koans/ui/1-gloss/1-circle/solution
+    else
+        hs-source-dirs:   koans/ui/1-gloss/1-circle
+
+executable ui-1-gloss-1-circle
+    import:           exec, ui-1-gloss-1-circle
+    main-is:          Main.hs
+
+test-suite ui-1-gloss-1-circle-test
+    import:           test, ui-1-gloss-1-circle
+    type:             exitcode-stdio-1.0
+    main-is:          Test.hs
+    hs-source-dirs:   koans/ui/1-gloss/1-circle/test
+
+common ui-1-gloss-2-move
+    import:           gloss
+    if flag(solution)
+        hs-source-dirs:   koans/ui/1-gloss/2-move/solution
+    else
+        hs-source-dirs:   koans/ui/1-gloss/2-move
+
+executable ui-1-gloss-2-move
+    import:           exec, ui-1-gloss-2-move
+    main-is:          Main.hs
+
+test-suite ui-1-gloss-2-move-test
+    import:           test, ui-1-gloss-2-move
+    type:             exitcode-stdio-1.0
+    main-is:          Test.hs
+    hs-source-dirs:   koans/ui/1-gloss/2-move/test
+
+common ui-1-gloss-3-modularize
+    import:           gloss
+    if flag(solution)
+        hs-source-dirs:   koans/ui/1-gloss/3-modularize/solution
+    else
+        hs-source-dirs:   koans/ui/1-gloss/3-modularize
+
+executable ui-1-gloss-3-modularize
+    import:           exec, ui-1-gloss-3-modularize
+    main-is:          Main.hs
+
+test-suite ui-1-gloss-3-modularize-test
+    import:           test, ui-1-gloss-3-modularize
+    type:             exitcode-stdio-1.0
+    main-is:          Test.hs
+    hs-source-dirs:   koans/ui/1-gloss/3-modularize/test
+
+common ui-1-gloss-4-user-input
+    import:           gloss
+    if flag(solution)
+        hs-source-dirs:   koans/ui/1-gloss/4-user-input/solution
+    else
+        hs-source-dirs:   koans/ui/1-gloss/4-user-input
+
+executable ui-1-gloss-4-user-input
+    import:           exec, ui-1-gloss-4-user-input
+    main-is:          Main.hs
+
+test-suite ui-1-gloss-4-user-input-test
+    import:           test, ui-1-gloss-4-user-input
+    type:             exitcode-stdio-1.0
+    main-is:          Test.hs
+    hs-source-dirs:   koans/ui/1-gloss/4-user-input/test
+
+common ui-1-gloss-5-randomness
+    import:           gloss
+    if flag(solution)
+        hs-source-dirs:   koans/ui/1-gloss/5-randomness/solution
+    else
+        hs-source-dirs:   koans/ui/1-gloss/5-randomness
+
+executable ui-1-gloss-5-randomness
+    import:           exec, ui-1-gloss-5-randomness
+    main-is:          Main.hs
+
+test-suite ui-1-gloss-5-randomness-test
+    import:           test, ui-1-gloss-5-randomness
+    type:             exitcode-stdio-1.0
+    main-is:          Test.hs
+    hs-source-dirs:   koans/ui/1-gloss/5-randomness/test
+
+common ui-1-gloss-6-control-flow
+    import:           gloss
+    if flag(solution)
+        hs-source-dirs:   koans/ui/1-gloss/6-control-flow/solution
+    else
+        hs-source-dirs:   koans/ui/1-gloss/6-control-flow
+
+executable ui-1-gloss-6-control-flow
+    import:           exec, ui-1-gloss-6-control-flow
+    main-is:          Main.hs
+
+test-suite ui-1-gloss-6-control-flow-test
+    import:           test, ui-1-gloss-6-control-flow
+    type:             exitcode-stdio-1.0
+    main-is:          Test.hs
+    hs-source-dirs:   koans/ui/1-gloss/6-control-flow/test
+
+common ui-1-gloss-snake
+    import:           gloss
+    if flag(solution)
+        hs-source-dirs:   koans/ui/1-gloss/snake/solution
+    else
+        hs-source-dirs:   koans/ui/1-gloss/snake
+    build-depends:
+        automaton ^>= 1.3,
+
+executable ui-1-gloss-snake
+    import:           exec, ui-1-gloss-snake
+    main-is:          Main.hs
+
+test-suite ui-1-gloss-snake-test
+    import:           test, ui-1-gloss-snake
+    type:             exitcode-stdio-1.0
+    main-is:          Test.hs
+    hs-source-dirs:   koans/ui/1-gloss/snake/test
+
+executable wsml
+    import: exec
+    main-is: Main.hs
+    hs-source-dirs:   koans/wsml
+    build-depends:
+        websockets ^>= 0.13,
+        wuss ^>= 2

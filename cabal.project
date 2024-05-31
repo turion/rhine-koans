@@ -1,2 +1,5 @@
 test-show-details: direct
 packages: rhine-koans.cabal
+          ../rhine/rhine-gloss/rhine-gloss.cabal
+          ../rhine/rhine/rhine.cabal
+          ../rhine/automaton/automaton.cabal
