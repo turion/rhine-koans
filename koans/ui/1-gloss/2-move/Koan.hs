@@ -7,7 +7,7 @@ which can then be used to parametrise everything the program does.
 
 In Rhine, one way to access time is to use ['sinceInitS'](https://hackage.haskell.org/package/rhine/docs/FRP-Rhine-ClSF-Util.html#v:sinceInitS),
 which outputs the time since clock initialisation (which happens at the beginning of 'flow').
-You can use this time in the definition of all gloss pictures, and they'll start moving!
+When you use this time to translate the position of the circle, it will move!
 -}
 module Koan where
 

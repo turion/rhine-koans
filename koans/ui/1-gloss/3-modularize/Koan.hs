@@ -12,7 +12,6 @@ We now have two different components, the game clock and the visualization clock
 But they run on different monads and time domains!
 You will have to translate between them in order to make everything flow together.
 -}
-
 module Koan where
 
 -- rhine
@@ -34,11 +33,11 @@ movingCircle = sinceInitS >-> arr (\t -> translate 0 (10 * t) $ circleSolid 10) 
 
 -- | A clock that ticks at every round of the game.
 type GameClock =
--- Actually we just want a Millisecond 500 clock, but that is in the 'IO' monad,
--- while the gloss backend expects a particular monad, 'GlossConcT'.
--- Luckily there is also has a utility to lift any 'IO' clock to it!
--- Have a look at https://hackage.haskell.org/package/rhine-gloss/docs/FRP-Rhine-Gloss-IO.html.
-    _ _ (Millisecond 500)
+  -- Actually we just want a Millisecond 500 clock, but that is in the 'IO' monad,
+  -- while the gloss backend expects a particular monad, 'GlossConcT'.
+  -- Luckily there is also has a utility to lift any 'IO' clock to it!
+  -- Have a look at https://hackage.haskell.org/package/rhine-gloss/docs/FRP-Rhine-Gloss-IO.html.
+  _ _ (Millisecond 500)
 
 gameClock :: GameClock
 -- The clock type lifting function from above also has a corresponding value level function!

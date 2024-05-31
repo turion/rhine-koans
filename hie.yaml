@@ -211,6 +211,27 @@ cradle:
       component: "rhine-koans:exe:ui-1-gloss-5-randomness"
 
     - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:exe:ui-1-gloss-6-control-flow"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:test:ui-1-gloss-6-control-flow-test"
+
+    - path: "koans/ui/1-gloss/6-control-flow/test"
+      component: "rhine-koans:test:ui-1-gloss-6-control-flow-test"
+
+    - path: "koans/ui/1-gloss/6-control-flow"
+      component: "rhine-koans:test:ui-1-gloss-6-control-flow-test"
+
+    - path: "koans/ui/1-gloss/6-control-flow/solution"
+      component: "rhine-koans:test:ui-1-gloss-6-control-flow-test"
+
+    - path: "koans/ui/1-gloss/6-control-flow"
+      component: "rhine-koans:exe:ui-1-gloss-6-control-flow"
+
+    - path: "koans/ui/1-gloss/6-control-flow/solution"
+      component: "rhine-koans:exe:ui-1-gloss-6-control-flow"
+
+    - path: "generic/reimport-main/Main.hs"
       component: "rhine-koans:exe:ui-1-gloss-snake"
 
     - path: "generic/reimport-main/Main.hs"

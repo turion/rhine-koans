@@ -2,8 +2,7 @@
 {-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE TemplateHaskell #-}
 
-{- | Randomness.
--}
+-- | Randomness.
 module Koan where
 
 -- base
@@ -70,12 +69,12 @@ stepPosition South = (<> Position 0 (-1))
 
 -- | The user can change the direction of the snake
 data Turn
-  -- | Don't change the direction. This happens if no key is pressed.
-  = Stay
-  -- | Turn right (clockwise) when the right arrow is pressed.
-  | TurnRight
-  -- | Turn left (counterclockwise) when the left arrow is pressed.
-  | TurnLeft
+  = -- | Don't change the direction. This happens if no key is pressed.
+    Stay
+  | -- | Turn right (clockwise) when the right arrow is pressed.
+    TurnRight
+  | -- | Turn left (counterclockwise) when the left arrow is pressed.
+    TurnLeft
   deriving (Show)
 
 changeDirection :: Turn -> Direction -> Direction
@@ -118,7 +117,6 @@ stepSnake turn eat snake =
 
 renderSnake :: Snake -> Picture
 renderSnake = foldMap renderPosition . body
-
 
 newtype Apple = Apple {getApple :: Position}
   deriving (Eq, Ord)
