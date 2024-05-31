@@ -15,17 +15,17 @@ main = runSecureClient "www.seismicportal.eu" 443 "/" ws -- try again at home
 
 ws :: ClientApp ()
 ws connection = do
-    putStrLn "Connected!"
+  putStrLn "Connected!"
 
-    void . forkIO . forever $ do
-        message <- receiveData connection
-        print (message :: Text)
+  void . forkIO . forever $ do
+    message <- receiveData connection
+    print (message :: Text)
 
-    let loop = do
-            line <- getLine
-            unless (null line) $ do
-                sendTextData connection (pack line)
-                loop
-    loop
+  let loop = do
+        line <- getLine
+        unless (null line) $ do
+          sendTextData connection (pack line)
+          loop
+  loop
 
-    sendClose connection (pack "Bye!")
+  sendClose connection (pack "Bye!")
