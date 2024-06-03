@@ -1,0 +1,44 @@
+{
+  "nodes": {
+    "nix-mkPandoc": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1636045594,
+        "narHash": "sha256-sdJaDmdMyRhkJheIrVx60dYyB3pVdNEQ7409v8BCyOI=",
+        "owner": "chisui",
+        "repo": "nix-mkPandoc",
+        "rev": "9f462382efdca2eeb28735176311dbf84a6ffa34",
+        "type": "github"
+      },
+      "original": {
+        "owner": "chisui",
+        "repo": "nix-mkPandoc",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1717394157,
+        "narHash": "sha256-xI6YE/VM1w5DQKxPK6VSEdV4JOx72LWIWx8+fV424L4=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "518daacfe2ee732432b4a7dac19b72eda037d44d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable-small",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nix-mkPandoc": "nix-mkPandoc",
+        "nixpkgs": "nixpkgs"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

@@ -95,3 +95,9 @@ https://github.com/turion/rhine-koans/issues/new
 ## I'd rather read about `rhine` first
 
 You're heartily invited! Have a look at https://github.com/turion/rhine?tab=readme-ov-file#documentation for all the resources available.
+
+## I'm attending/I was attending Zurihac '24
+
+That's great! The slides for [the workshop](https://zfoh.ch/zurihac2024/#track-frp) are here:
+
+https://github.com/turion/rhine-koans/blob/main/presentation/presentation.pdf
