@@ -102,6 +102,24 @@ jobs:
       - name: Cabal test solutions
         run: cabal test all --enable-tests --test-show-details=Always -fsolution
 
+  presentation:
+    name: Build presentation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@v27
+      - uses: DeterminateSystems/magic-nix-cache-action@v7
+      - uses: cachix/cachix-action@v14
+        with:
+          name: rhine-koans
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+      - name: Build presentation
+        run: nix build --accept-flake-config
+      - name: Install pdftotext
+        run: nix profile install nixpkgs#poppler_utils
+      - name: Compare presentation to checked in version
+        run: diff <(pdftotext -layout presentation/presentation.pdf /dev/stdout) <(pdftotext -layout result/presentation.pdf /dev/stdout)
+
   success:
     name: All GHCs built successfully
     runs-on: ubuntu-latest
