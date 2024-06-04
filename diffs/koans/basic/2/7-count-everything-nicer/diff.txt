@@ -1,0 +1,14 @@
+< {-# LANGUAGE CPP #-}
+< 
+< -- Disabling formatter and linter because it would fail on the syntax error otherwise.
+< #ifndef __HLINT__
+< {- FOURMOLU_DISABLE -}
+< 
+< -- Start reading here
+< -- vvvvvvvvvvvvvvvvvv
+> {-# LANGUAGE Arrows #-}
+<   arrMCl print -< _ -- Which one is missing here?
+>   arrMCl print -< totalCharCount
+< 
+< -- Ignore the next line ;)
+< #endif

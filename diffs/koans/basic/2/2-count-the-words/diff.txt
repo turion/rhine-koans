@@ -1,0 +1,2 @@
+< wordCount = userInput >-> _ (Text.words >>> length)
+> wordCount = userInput >-> arr (Text.words >>> length)

@@ -1,0 +1,2 @@
+< parrot = userInput >-> _ Text.putStrLn
+> parrot = userInput >-> arrMCl Text.putStrLn

@@ -1,0 +1,5 @@
+< {- | The clock _type_ specifies the rate of the clock.
+< type TenPerSecond = Millisecond _
+< -}
+> -- | The clock _type_ specifies the rate of the clock.
+> type TenPerSecond = Millisecond 100

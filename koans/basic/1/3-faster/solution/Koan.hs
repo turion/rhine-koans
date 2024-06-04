@@ -8,6 +8,9 @@ Now, can you output the message "Hello Rhine!" _ten times_ per second?
 -}
 module Koan where
 
+-- text
+import Data.Text.IO as Text (putStrLn)
+
 -- rhine
 import FRP.Rhine
 
@@ -22,7 +25,7 @@ tenPerSecond = waitClock
 
 -- | A component of the whole signal network.
 message :: ClSF IO TenPerSecond () ()
-message = constMCl (putStrLn "Hello Rhine!")
+message = constMCl (Text.putStrLn "Hello Rhine!")
 
 main :: IO ()
 main = flow $ message @@ tenPerSecond

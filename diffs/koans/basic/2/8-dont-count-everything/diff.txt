@@ -1,0 +1,2 @@
+<   if _
+>   if lineCount `mod` 1000 == 0

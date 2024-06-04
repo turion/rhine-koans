@@ -1,0 +1,2 @@
+< mainComponent = _ >-> _
+> mainComponent = produceMessage >-> printMessage

@@ -1,0 +1,2 @@
+<     (putStrLn _) -- This is the side effect to perform. Insert your message in the hole!
+>     (Text.putStrLn "Hello Rhine!") -- This is the side effect to perform. Insert your message in the hole!

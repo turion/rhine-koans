@@ -7,11 +7,8 @@ Can you spot it and fix it?
 -}
 module Koan where
 
--- base
-import Prelude hiding (putStrLn)
-
 -- text
-import Data.Text.IO (putStrLn)
+import Data.Text.IO as Text (putStrLn)
 
 -- rhine
 import FRP.Rhine
@@ -22,7 +19,7 @@ everySecond = waitClock
 
 -- | A component of the whole signal network.
 message :: ClSF IO (Millisecond 1000) () ()
-message = constMCl (putStrLn "Hello Rhine!")
+message = constMCl (Text.putStrLn "Hello Rhine!")
 
 main :: IO ()
 main = flow $ message @@ everySecond
