@@ -5,6 +5,9 @@ such that it outputs the message "Hello Rhine!" every second?
 -}
 module Koan where
 
+-- text
+import Data.Text.IO as Text (putStrLn)
+
 -- rhine
 import FRP.Rhine
 
@@ -36,7 +39,7 @@ everySecond = waitClock -- A particular implementation of this clock that waits 
 message :: ClSF IO (Millisecond 1000) () ()
 message =
   constMCl -- Perform the following side effect every time the clock ticks.
-    (putStrLn "Hello Rhine!") -- This is the side effect to perform. Insert your message in the hole!
+    (Text.putStrLn "Hello Rhine!") -- This is the side effect to perform. Insert your message in the hole!
 
 main :: IO ()
 main =

@@ -1,0 +1,2 @@
+< everySecond :: Millisecond 2345
+> everySecond :: Millisecond 1000

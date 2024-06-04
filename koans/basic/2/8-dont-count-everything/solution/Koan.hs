@@ -1,12 +1,9 @@
 {-# LANGUAGE Arrows #-}
 
-{- | Count everything nicer.
+{- | Don't count everything.
 
-The last problem got quite verbose, and fiddling around with nested tuples isn't fun.
-Fortunately, Haskell has a language extension that provides very useful syntax
-for data flow constructs like signal functions!
-It is called "arrow notation", and you can read a bit more about it here: https://www.haskell.org/arrows/.
-Have a look how the code of the previous koan can be cleaned up with it.
+Arrow notation can have case expressions, and also if-then-else syntax.
+You can use it to conditionally execute an effectful stream function.
 -}
 module Koan where
 
@@ -27,7 +24,7 @@ sumClSF = feedback 0 $ arr aggregator
        in
         (nextSum, nextSum)
 
--- | Print the number of total words and characters so far.
+-- | On every 1000th line, print the number of total words and characters so far.
 printAllCounts :: ClSF IO StdinClock () ()
 printAllCounts = proc () -> do
   userInput <- tagS -< ()
@@ -39,6 +36,7 @@ printAllCounts = proc () -> do
   totalWordCount <- sumClSF -< wordCount
   totalCharCount <- sumClSF -< charCount
 
+  -- Only trigger the then-branch on every 1000th line!
   if lineCount `mod` 1000 == 0
     then do
       arrMCl print -< lineCount

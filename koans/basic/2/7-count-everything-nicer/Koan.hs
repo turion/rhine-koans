@@ -43,13 +43,13 @@ printAllCounts = proc () -> do
   -- This is nearly like do notation, except it also has syntax for input, the -<.
 
   -- /------/--- Everything left from a <- is the output _signal_ of a signal function.
-  -- |      |    It is a value that can depend on the current tick of the clock.
-  -- |      |
-  -- |      |   /--- Signal functions can be used between <- and -<.
-  -- |      |   |
-  -- |      |   |       /--- This is the input to the signal function. (tagS needs none.)
-  -- |      |   |       |
-  -- v      v   v       v
+  -- /|     |    It is a value that can depend on the current tick of the clock.
+  -- /|     |
+  -- /|     |   /--- Signal functions can be used between <- and -<.
+  -- /|     |   |
+  -- /|     |   |       /--- This is the input to the signal function. (tagS needs none.)
+  -- /|     |   |       |
+  --  v     v   v       v
   userInput <- tagS -< ()
 
   -- We can apply ordinary functions to signals.

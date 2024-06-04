@@ -120,6 +120,14 @@ jobs:
       - name: Compare presentation to checked in version
         run: diff <(pdftotext -layout presentation/presentation.pdf /dev/stdout) <(pdftotext -layout result/presentation.pdf /dev/stdout)
 
+  diffs:
+    name: Check whether diffs between solution and problem have changed
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check diffs
+        run: ./check_diffs.sh
+
   success:
     name: All GHCs built successfully
     runs-on: ubuntu-latest

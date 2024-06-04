@@ -1,0 +1,4 @@
+< totalCharCount = charCount >-> _
+> totalCharCount = charCount >-> sumClSF
+< totalWordAndCharCount = _ &&& _
+> totalWordAndCharCount = totalWordCount &&& totalCharCount

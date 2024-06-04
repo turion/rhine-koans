@@ -6,7 +6,7 @@ The last problem got quite verbose, and fiddling around with nested tuples isn't
 Fortunately, Haskell has a language extension that provides very useful syntax
 for data flow constructs like signal functions!
 It is called "arrow notation", and you can read a bit more about it here: https://www.haskell.org/arrows/.
-Have a look how the code can be cleaned up with it.
+Have a look how the code of the previous koan can be cleaned up with it.
 -}
 module Koan where
 
@@ -36,13 +36,13 @@ printAllCounts = proc () -> do
   -- This is nearly like do notation, except it also has syntax for input, the -<.
 
   -- /------/--- Everything left from a <- is the output _signal_ of a signal function.
-  -- v      v    It is a value that can depend on the current tick of the clock.
-  -- v      v
-  -- v      v   /--- Signal functions can be used between <- and -<.
-  -- v      v   v
-  -- v      v   v       /--- This is the input to the signal function. (tagS needs none.)
-  -- v      v   v       v
-  -- v      v   v       v
+  -- /|     |    It is a value that can depend on the current tick of the clock.
+  -- /|     |
+  -- /|     |   /--- Signal functions can be used between <- and -<.
+  -- /|     |   |
+  -- /|     |   |       /--- This is the input to the signal function. (tagS needs none.)
+  -- /|     |   |       |
+  --  v     v   v       v
   userInput <- tagS -< ()
 
   -- We can apply ordinary functions to signals.

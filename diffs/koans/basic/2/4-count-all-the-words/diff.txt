@@ -1,0 +1,4 @@
+<         nextSum = _ -- What should be the state after a further line of input has arrived?
+>         nextSum = currentInput + currentSum -- What should be the state after a further line of input has arrived?
+<         (_, nextSum)
+>         (nextSum, nextSum)

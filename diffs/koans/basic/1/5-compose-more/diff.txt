@@ -1,0 +1,2 @@
+< mainComponent = _ >>> _ >>> _
+> mainComponent = produceMessage >>> exclamate >>> printMessage

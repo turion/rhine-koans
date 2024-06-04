@@ -1,0 +1,2 @@
+< main = flow _
+> main = flow $ printLineCount @@ StdinClock

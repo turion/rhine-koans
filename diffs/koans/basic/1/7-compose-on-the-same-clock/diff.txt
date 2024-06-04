@@ -1,0 +1,6 @@
+< produceMessage :: ClSF IO (Millisecond 2345) () Text
+> produceMessage :: ClSF IO EverySecond () Text
+< exclamate :: (Monad m) => ClSF m (Millisecond 3456) Text Text
+> exclamate :: (Monad m) => ClSF m EverySecond Text Text
+< printMessage :: ClSF IO (Millisecond 4567) Text ()
+> printMessage :: ClSF IO EverySecond Text ()

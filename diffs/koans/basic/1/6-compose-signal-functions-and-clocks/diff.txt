@@ -1,0 +1,2 @@
+< mainRhine = produceMessage >>> exclamate >>> printMessage @@ everySecond
+> mainRhine = produceMessage >-> exclamate >-> printMessage @@ everySecond

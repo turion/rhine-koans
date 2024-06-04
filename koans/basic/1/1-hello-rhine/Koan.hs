@@ -5,11 +5,8 @@ such that it outputs the message "Hello Rhine!" every second?
 -}
 module Koan where
 
--- base
-import Prelude hiding (putStrLn)
-
 -- text
-import Data.Text.IO (putStrLn)
+import Data.Text.IO as Text (putStrLn)
 
 -- rhine
 import FRP.Rhine
