@@ -51,7 +51,7 @@ totalCharCount = charCount >-> sumN
 totalCount :: ClSF IO StdinClock () (Integer, (Int, Int)) -- What will the type of this be?
 totalCount = lineCount &&& totalWordCount &&& totalCharCount
 
--- | Print the number of total words and characters so far.
+-- | Print the number of total lines, words and characters so far.
 printAllCounts :: ClSF IO StdinClock () ()
 -- On what do you need to pattern match here to bring lines_, words_ and chars into scope?
 printAllCounts = totalCount >-> arrMCl (\(lines_, (words_, chars)) -> print lines_ >> print words_ >> print chars)

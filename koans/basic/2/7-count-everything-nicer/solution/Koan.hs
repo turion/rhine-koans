@@ -16,7 +16,7 @@ import Data.Text qualified as Text (length, words)
 -- rhine
 import FRP.Rhine hiding (currentInput)
 
--- | Print the number of total words and characters so far.
+-- | Print the number of total lines, words and characters so far.
 printAllCounts :: ClSF IO StdinClock () ()
 -- proc is a keyword. Think of it like a lambda expression!
 -- But why does GHC spit out a nasty parse error here?

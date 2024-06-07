@@ -34,7 +34,7 @@ printCounts = proc (lineCount, totalWordCount, totalCharCount) -> do
   arrMCl print -< totalWordCount
   arrMCl print -< totalCharCount
 
--- | On every 1000th line, print the number of total words and characters so far.
+-- | On every 1000th line, print the number of total lines, words and characters so far.
 printAllCounts :: ClSF IO StdinClock () ()
 printAllCounts = proc () -> do
   counts@(lineCount, _, _) <- allCounts -< ()

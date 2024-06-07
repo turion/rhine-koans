@@ -23,7 +23,7 @@ printCounts :: ClSF IO StdinClock (Int, Int, Int) ()
 printCounts = proc (lineCount, totalWordCount, totalCharCount) -> do
   _ -< _
 
--- | On every 1000th line, print the number of total words and characters so far.
+-- | On every 1000th line, print the number of total lines, words and characters so far.
 printAllCounts :: ClSF IO StdinClock () ()
 printAllCounts = proc () -> do
   counts@(lineCount, _, _) <- _ -< ()
@@ -34,7 +34,7 @@ printAllCounts = proc () -> do
 -- For reference, here is the previous implementation.
 -- Can you reuse its pieces to implement the holes above?
 
--- | On every 1000th line, print the number of total words and characters so far.
+-- | On every 1000th line, print the number of total lines, words and characters so far.
 printAllCountsMonolith :: ClSF IO StdinClock () ()
 printAllCountsMonolith = proc () -> do
   userInput <- tagS -< ()
