@@ -34,28 +34,18 @@ charCount :: ClSF IO StdinClock () Int
 -- Yes, you can use >>> to compose ordinary functions as well!
 charCount = userInput >-> arr (Text.length >>> (+ 1))
 
--- | Compute the sum of all input numbers so far, including the current one.
-sumClSF :: (Monad m, Num a) => ClSF m cl a a
-sumClSF = feedback 0 $ arr aggregator
-  where
-    aggregator :: (Num a) => (a, a) -> (a, a)
-    aggregator (currentInput, currentSum) =
-      let
-        nextSum = currentInput + currentSum
-       in
-        (nextSum, nextSum)
-
 -- | The number of lines of input so far.
 lineCount :: ClSF IO StdinClock () Integer
 lineCount = count
 
 -- | The number of words of input so far.
 totalWordCount :: ClSF IO StdinClock () Int
-totalWordCount = wordCount >-> sumClSF
+-- Your sumClSF is actually included in the library, as sumN!
+totalWordCount = wordCount >-> sumN
 
 -- | The number of characters of input so far.
 totalCharCount :: ClSF IO StdinClock () Int
-totalCharCount = charCount >-> sumClSF
+totalCharCount = charCount >-> sumN
 
 -- | The number of total lines, words and characters so far.
 totalCount :: ClSF IO StdinClock () _ -- What will the type of this be?

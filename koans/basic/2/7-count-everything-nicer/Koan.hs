@@ -23,17 +23,6 @@ import Data.Text qualified as Text (length, words)
 -- rhine
 import FRP.Rhine hiding (currentInput)
 
--- | Compute the sum of all input numbers so far, including the current one.
-sumClSF :: (Monad m, Num a) => ClSF m cl a a
-sumClSF = feedback 0 $ arr aggregator
-  where
-    aggregator :: (Num a) => (a, a) -> (a, a)
-    aggregator (currentInput, currentSum) =
-      let
-        nextSum = currentInput + currentSum
-       in
-        (nextSum, nextSum)
-
 -- | Print the number of total words and characters so far.
 printAllCounts :: ClSF IO StdinClock () ()
 -- proc is a keyword. Think of it like a lambda expression!
@@ -60,8 +49,8 @@ printAllCounts = proc () -> do
 
   -- Signals can be inputs to signal functions.
   -- This way we can aggregate signals.
-  totalWordCount <- sumClSF -< wordCount
-  totalCharCount <- sumClSF -< charCount
+  totalWordCount <- sumN -< wordCount
+  totalCharCount <- sumN -< charCount
 
   -- If a signal function has trivial output (), the <- is not needed.
   arrMCl print -< lineCount
