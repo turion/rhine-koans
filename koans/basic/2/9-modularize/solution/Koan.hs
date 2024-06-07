@@ -23,8 +23,8 @@ allCounts = proc () -> do
       charCount = Text.length userInput + 1
 
   lineCount <- count @Int -< ()
-  totalWordCount <- sumClSF -< wordCount
-  totalCharCount <- sumClSF -< charCount
+  totalWordCount <- sumN -< wordCount
+  totalCharCount <- sumN -< charCount
   returnA -< (lineCount, totalWordCount, totalCharCount)
 
 -- | Print the three counts.
@@ -44,16 +44,3 @@ printAllCounts = proc () -> do
 
 main :: IO ()
 main = flow $ printAllCounts @@ StdinClock
-
--- * Utilities
-
--- | Compute the sum of all input numbers so far, including the current one.
-sumClSF :: (Monad m, Num a) => ClSF m cl a a
-sumClSF = feedback 0 $ arr aggregator
-  where
-    aggregator :: (Num a) => (a, a) -> (a, a)
-    aggregator (currentInput, currentSum) =
-      let
-        nextSum = currentInput + currentSum
-       in
-        (nextSum, nextSum)

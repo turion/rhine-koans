@@ -13,17 +13,6 @@ import Data.Text qualified as Text (length, words)
 -- rhine
 import FRP.Rhine hiding (currentInput)
 
--- | Compute the sum of all input numbers so far, including the current one.
-sumClSF :: (Monad m, Num a) => ClSF m cl a a
-sumClSF = feedback 0 $ arr aggregator
-  where
-    aggregator :: (Num a) => (a, a) -> (a, a)
-    aggregator (currentInput, currentSum) =
-      let
-        nextSum = currentInput + currentSum
-       in
-        (nextSum, nextSum)
-
 -- | On every 1000th line, print the number of total words and characters so far.
 printAllCounts :: ClSF IO StdinClock () ()
 printAllCounts = proc () -> do
@@ -33,8 +22,8 @@ printAllCounts = proc () -> do
       charCount = Text.length userInput + 1
 
   lineCount <- count @Int -< ()
-  totalWordCount <- sumClSF -< wordCount
-  totalCharCount <- sumClSF -< charCount
+  totalWordCount <- sumN -< wordCount
+  totalCharCount <- sumN -< charCount
 
   -- Only trigger the then-branch on every 1000th line!
   if _
