@@ -259,6 +259,51 @@ cradle:
       component: "rhine-koans:test:basic-2-9-modularize-test"
 
     - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:exe:basic-3-1-exceptions"
+
+    - path: "koans/basic/3/1-exceptions/Koan.hs"
+      component: "rhine-koans:exe:basic-3-1-exceptions"
+
+    - path: "koans/basic/3/1-exceptions/solution/Koan.hs"
+      component: "rhine-koans:exe:basic-3-1-exceptions"
+
+    - path: "koans/basic/3/1-exceptions/test/Test.hs"
+      component: "rhine-koans:test:basic-3-1-exceptions-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:test:basic-3-1-exceptions-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:exe:basic-3-2-state"
+
+    - path: "koans/basic/3/2-state/Koan.hs"
+      component: "rhine-koans:exe:basic-3-2-state"
+
+    - path: "koans/basic/3/2-state/solution/Koan.hs"
+      component: "rhine-koans:exe:basic-3-2-state"
+
+    - path: "koans/basic/3/2-state/test/Test.hs"
+      component: "rhine-koans:test:basic-3-2-state-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:test:basic-3-2-state-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:exe:basic-3-3-asynchronize"
+
+    - path: "koans/basic/3/3-asynchronize/Koan.hs"
+      component: "rhine-koans:exe:basic-3-3-asynchronize"
+
+    - path: "koans/basic/3/3-asynchronize/solution/Koan.hs"
+      component: "rhine-koans:exe:basic-3-3-asynchronize"
+
+    - path: "koans/basic/3/3-asynchronize/test/Test.hs"
+      component: "rhine-koans:test:basic-3-3-asynchronize-test"
+
+    - path: "generic/reimport-main/Main.hs"
+      component: "rhine-koans:test:basic-3-3-asynchronize-test"
+
+    - path: "generic/reimport-main/Main.hs"
       component: "rhine-koans:exe:ui-1-gloss-1-circle"
 
     - path: "generic/test-gloss"

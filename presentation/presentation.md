@@ -213,8 +213,9 @@ main = flow mainRhine
 
 ```
 git clone git@github.com:turion/rhine-koans.git
-cabal test basic-1-1-hello-rhine-test
+cabal update
 cabal run basic-1-1-hello-rhine
+cabal test basic-1-1-hello-rhine-test
 ```
 
 ## Slides

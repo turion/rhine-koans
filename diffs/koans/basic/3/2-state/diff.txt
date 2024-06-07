@@ -1,0 +1,14 @@
+< import Control.Exception qualified as Exception ()
+> import Control.Exception qualified as Exception
+< import Control.Monad.Trans.Class ()
+< import Control.Monad.Trans.State.Strict (StateT (runStateT))
+> import Control.Monad.Trans.Class (lift)
+> import Control.Monad.Trans.State.Strict (StateT (runStateT), get, put)
+<       monadMorphism = _
+>       monadMorphism = ExceptT . lift . Exception.try
+<   _ -< _
+>   arrMCl $ lift . put -< (lineCount, totalWordCount, totalCharCount)
+<   counts@(lineCount, _, _) <- constMCl _ -< ()
+>   counts@(lineCount, _, _) <- constMCl $ lift get -< ()
+<           _ @@ stdinWithEOF
+>           putAllCounts >-> printAllCounts @@ stdinWithEOF

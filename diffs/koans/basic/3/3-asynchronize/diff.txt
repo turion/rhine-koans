@@ -1,0 +1,12 @@
+<   let nChars = _
+<       nWords = _
+<       nLines = _
+>   let nChars = Text.length userInput + 1
+>       nWords = length $ Text.words userInput
+>       nLines = 1
+<   arrMCl $ lift . _
+>   arrMCl $ lift . add
+<   counts <- constMCl $ lift _ -< ()
+>   counts <- constMCl $ lift look -< ()
+<           allCounts @@ stdinWithEOF |@| printCounts @@ _ waitClock
+>           allCounts @@ stdinWithEOF |@| printCounts @@ ioClock waitClock
