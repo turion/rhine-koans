@@ -6,6 +6,12 @@
 >       nLines = 1
 <   arrMCl $ lift . _
 >   arrMCl $ lift . add
+<   TimeInfo {} <- timeInfo -< ()
+<   arrMCl $ liftIO . print -< _
+<   arrMCl $ liftIO . print -< _
+>   TimeInfo {absolute, sinceInit} <- timeInfo -< ()
+>   arrMCl $ liftIO . print -< absolute
+>   arrMCl $ liftIO . print -< sinceInit
 <   counts <- constMCl $ lift _ -< ()
 >   counts <- constMCl $ lift look -< ()
 <           allCounts @@ stdinWithEOF |@| printCounts @@ _ waitClock
