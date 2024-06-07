@@ -24,6 +24,7 @@ common opts
     build-depends:    base >=4.16.4.0 && <4.20
                     , rhine ^>= 1.4
                     , text ^>= 2.0
+                    , transformers ^>= 0.6
     default-extensions:
         DataKinds
         GADTs
@@ -339,6 +340,54 @@ test-suite basic-2-9-modularize-test
     type:             exitcode-stdio-1.0
     main-is:          Test.hs
     hs-source-dirs:   koans/basic/2/9-modularize/test
+
+common basic-3-1-exceptions
+    if flag(solution)
+        hs-source-dirs:   koans/basic/3/1-exceptions/solution
+    else
+        hs-source-dirs:   koans/basic/3/1-exceptions
+
+executable basic-3-1-exceptions
+    import:           exec, basic-3-1-exceptions
+    main-is:          Main.hs
+
+test-suite basic-3-1-exceptions-test
+    import:           test, basic-3-1-exceptions
+    type:             exitcode-stdio-1.0
+    main-is:          Test.hs
+    hs-source-dirs:   koans/basic/3/1-exceptions/test
+
+common basic-3-2-state
+    if flag(solution)
+        hs-source-dirs:   koans/basic/3/2-state/solution
+    else
+        hs-source-dirs:   koans/basic/3/2-state
+
+executable basic-3-2-state
+    import:           exec, basic-3-2-state
+    main-is:          Main.hs
+
+test-suite basic-3-2-state-test
+    import:           test, basic-3-2-state
+    type:             exitcode-stdio-1.0
+    main-is:          Test.hs
+    hs-source-dirs:   koans/basic/3/2-state/test
+
+common basic-3-3-asynchronize
+    if flag(solution)
+        hs-source-dirs:   koans/basic/3/3-asynchronize/solution
+    else
+        hs-source-dirs:   koans/basic/3/3-asynchronize
+
+executable basic-3-3-asynchronize
+    import:           exec, basic-3-3-asynchronize
+    main-is:          Main.hs
+
+test-suite basic-3-3-asynchronize-test
+    import:           test, basic-3-3-asynchronize
+    type:             exitcode-stdio-1.0
+    main-is:          Test.hs
+    hs-source-dirs:   koans/basic/3/3-asynchronize/test
 
 common gloss
     build-depends:

@@ -1,0 +1,6 @@
+<     { unhoistedClock = _
+>     { unhoistedClock = StdinClock
+<       monadMorphism = _
+>       monadMorphism = ExceptT . Exception.try
+<   Left e <- runExceptT $ flow $ printAllCounts @@ stdinWithEOF
+>   Left (e :: IOError) <- runExceptT $ flow $ printAllCounts @@ stdinWithEOF
