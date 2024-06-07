@@ -1,0 +1,2 @@
+< rhine = sinceInitS >-> arrMCl (\t -> translate 0 (10 * t) $ paintAllIO $ circleSolid 10) @@ GlossSimClockIO
+> rhine = sinceInitS >-> arrMCl (\t -> paintAllIO $ translate 0 (10 * t) $ circleSolid 10) @@ GlossSimClockIO

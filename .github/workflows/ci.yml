@@ -62,6 +62,11 @@ jobs:
         with:
           ghc-version: ${{ matrix.ghc }}
 
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
+
       - name: Configure the build
         run: |
           cabal configure --enable-tests --enable-benchmarks --disable-documentation

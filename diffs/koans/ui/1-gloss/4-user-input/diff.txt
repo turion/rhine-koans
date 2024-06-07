@@ -1,0 +1,10 @@
+<           _ -> _
+>           (EventKey (SpecialKey KeyRight) Down _ _) -> Just TurnRight
+>           (EventKey (SpecialKey KeyLeft) Down _ _) -> Just TurnLeft
+>           _ -> Nothing
+<   let newDirection = _
+<       newPosition = _
+<    in Result _ _
+>   let newDirection = maybe direction (`changeDirection` direction) turnMaybe
+>       newPosition = stepPosition newDirection position
+>    in Result (newPosition, newDirection) newPosition

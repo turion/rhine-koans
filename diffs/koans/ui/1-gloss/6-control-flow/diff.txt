@@ -1,0 +1,3 @@
+<   _
+>   try $ liftClSF snakeAndApples >>> throwOnCond (fst >>> illegal) () >>> arr Just
+>   safe $ pure Nothing

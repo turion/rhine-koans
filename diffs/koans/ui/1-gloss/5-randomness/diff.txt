@@ -1,0 +1,9 @@
+<       arr (Just <<< Apple) <<< _ -< (Position (-boardSize) (-boardSize), Position boardSize boardSize)
+>       arr (Just <<< Apple) <<< getRandomRS -< (Position (-boardSize) (-boardSize), Position boardSize boardSize)
+<   addedApple <- _ -< ()
+>   addedApple <- evalRandIOS' newApple -< ()
+< game = _
+> game = feedback DontEat $ proc (turn, eat) -> do
+>   snake <- snakeSF -< (turn, eat)
+>   (apples, eatNext) <- applesSF -< head $ body snake
+>   returnA -< ((snake, apples), eatNext)

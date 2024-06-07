@@ -1,0 +1,15 @@
+> -- base
+> import GHC.Float (double2Float)
+> 
+< movingCircle = sinceInitS >-> arr (\t -> translate 0 (10 * t) $ circleSolid 10) -- realToFrac works as well!
+> movingCircle = sinceInitS >-> arr (\t -> translate 0 (10 * double2Float t) $ circleSolid 10) -- realToFrac works as well!
+<   _ (Millisecond 500)
+>   GlossConcTClock IO (Millisecond 500)
+< gameClock = _ waitClock
+> gameClock = glossConcTClock waitClock
+<   _ _ GlossSimClockIO
+>   GlossClockUTC IO GlossSimClockIO
+< visualizationClock = _ GlossSimClockIO
+> visualizationClock = glossClockUTC GlossSimClockIO
+< rhine = movingCircle @@ gameClock >-- _ blank --> visualize @@ visualizationClock
+> rhine = movingCircle @@ gameClock >-- keepLast blank --> visualize @@ visualizationClock
