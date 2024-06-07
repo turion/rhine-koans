@@ -48,15 +48,15 @@ printMessage = arrMCl $ Text.putStrLn . Text.unlines
 {- | A resampling buffer that consumes 'Text' at 5 times per second,
      and outputs all collected 'Text's as a list every second.
 
-                                    The clock on which input arrives
-                                     |
-                                     |         The clock on which output is produced
-                                     |            |
-                                     |            |       Input type
-                                     |            |        |
-                                     |            |        |     Output type
-                                     |            |        |      |
-                                     v            v        v      v
+                                                 The clock on which input arrives
+                                                  |
+                                                  |         The clock on which output is produced
+                                                  |            |
+                                                  |            |       Input type
+                                                  |            |        |
+                                                  |            |        |     Output type
+                                                  |            |        |      |
+                                                  v            v        v      v
 -}
 fiveToOne :: (Monad m) => ResamplingBuffer m FivePerSecond EverySecond Text [Text]
 fiveToOne = collect

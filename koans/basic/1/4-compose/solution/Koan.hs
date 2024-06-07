@@ -40,11 +40,11 @@ produceMessage =
 
 {- | Outputs a message every second.
 
-                                This component consumes `Text` as input.
-                                |
-                                |   But it produces no output.
-                                |   |
-                                v   v
+                                     This component consumes `Text` as input.
+                                     |
+                                     |   But it produces no output.
+                                     |   |
+                                     v   v
 -}
 printMessage :: ClSF IO EverySecond Text ()
 printMessage =
