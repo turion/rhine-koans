@@ -32,7 +32,7 @@ Lean back & relax :)
 
 ## What is Functional Reactive Programming?
 
-* Ivan Perez: FRP is about time.
+* Ivan Perez/Conal Elliot: FRP is about time.
 * Use awareness of time in the program.
 * _When_ do computations & effects happen?
 
@@ -245,3 +245,10 @@ Manuel (he/him), turion on Discord/Discourse/Github/..., turion@types.pl on Mast
 * Machine learning: `https://hackage.haskell.org/package/rhine-bayes`
 * Port the snake to `rhine-terminal`
 * Challenge: Rhine entry in https://github.com/gelisam/frp-zoo
+
+# Thanks!
+
+* Malte Ott: Alpha testing
+* Alex Drake: Invitation to Zurihac, many `rhine-*` libraries
+* Jun Matsushita: `rhine-terminal`
+* Ivan Perez: Discussions on FRP, dunai & Rhine
