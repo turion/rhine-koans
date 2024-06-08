@@ -14,12 +14,13 @@ date: June 8, 2024
 
 ## Plan for this session
 
-* 13:05 I'll briefly talk about FRP & Rhine (<15 minutes)
-* 13:20 If you haven't already, you'll clone the rhine-koans repo
-* 13:20 I'll show you how it works & walk you through the first koan
-* 13:25 You'll solve the basic track, I'll come around and answer your questions
-* 14:00 We'll collect & discuss the biggest questions & hardest problems that occurred so far
-* 14:10 You'll start on the UI track, or on your own little app, I'll come around and answer questions
+* 14:35 I'll briefly talk about FRP & Rhine (<15 minutes)
+* 14:50 If you haven't already, you'll clone the rhine-koans repo
+  (Or find someone to pair program with!)
+* 14:50 I'll show you how it works & walk you through the first koan
+* 14:55 You'll solve the basic track, I'll come around and answer your questions
+* 15:30 We'll collect & discuss the biggest questions & hardest problems that occurred so far
+* 15:40 You'll start on the UI track, or on your own project, I'll come around and answer questions
 
 # Let me tell you a tale...
 
@@ -35,6 +36,11 @@ Lean back & relax :)
 * Ivan Perez/Conal Elliot: FRP is about time.
 * Use awareness of time in the program.
 * _When_ do computations & effects happen?
+
+## Is this here Functional Reactive Programming?
+
+* It's a workshop on one specific, opinionated framework (https://github.com/turion/rhine)
+* There are many other frameworks around that work similarly or quite differently
 
 # Monadic/effectful streaming
 
