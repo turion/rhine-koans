@@ -61,8 +61,9 @@ cabal test basic-1-2-fix-the-bug-test
 
 ### What tracks are there?
 
-Currently, only the `basic` track, which will teach you how to write some simple `rhine` programs.
-Stay tuned for further tracks!
+* `basic`: Write some simple Rhine programs. Start here.
+  Learn about signal functions, clocks, and resampling buffers.
+* `ui`: Create a clone of the classic Snake game by using `rhine-gloss`.
 
 ### Stuck?
 
@@ -94,7 +95,7 @@ https://github.com/turion/rhine-koans/issues/new
 
 ## I'd rather read about `rhine` first
 
-You're heartily invited! Have a look at https://github.com/turion/rhine?tab=readme-ov-file#documentation for all the resources available.
+You're heartily invited! Have a look at https://github.com/turion/rhine?tab=readme-ov-file#learn-rhine for all the resources available.
 
 ## I'm attending/I was attending Zurihac '24
 
