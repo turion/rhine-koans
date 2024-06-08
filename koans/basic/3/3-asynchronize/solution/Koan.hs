@@ -92,12 +92,17 @@ allCounts = proc () -> do
 -- | Print the three counts.
 printCounts :: ClSF App (IOClock App (Millisecond 1000)) () ()
 printCounts = proc () -> do
+  -- To understand the runtime behaviour better, let's also output the absolute time and the time since clock initialisation.
+  -- These are part of the TimeInfo which is always available in a ClSF.
+  -- See https://hackage.haskell.org/package/rhine/docs/FRP-Rhine-Clock.html#t:TimeInfo for details.
+  -- Can you match on the corresponding record fields and print them?
   TimeInfo {absolute, sinceInit} <- timeInfo -< ()
+  arrMCl $ liftIO . print -< absolute
+  arrMCl $ liftIO . print -< sinceInit
+
   -- Have a look at https://hackage.haskell.org/package/transformers-0.6.1.0/docs/Control-Monad-Trans-Accum.html#g:3
   -- which operation is used to look up the current state.
   counts <- constMCl $ lift look -< ()
-  arrMCl $ liftIO . print -< absolute
-  arrMCl $ liftIO . print -< sinceInit
   arrMCl $ liftIO . print -< counts
 
 main :: IO ()
