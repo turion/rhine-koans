@@ -1,7 +1,7 @@
 {- | Count the words.
 
 With any clock, you can treat the 'Tag' like any other data.
-For example, you can apply any function the console input.
+For example, you can apply any function to the console input.
 -}
 module Koan where
 
