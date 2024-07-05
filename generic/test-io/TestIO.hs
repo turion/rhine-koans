@@ -6,7 +6,7 @@ import Control.Monad
 import GHC.IO.Handle (hDuplicate, hDuplicateTo)
 import System.Exit
 import System.IO (Handle, IOMode (..), hFlush, stderr, stdin, withFile)
-import Prelude hiding (lines, putStrLn, unlines, writeFile)
+import Prelude hiding (lines, putStrLn, unlines, writeFile, appendFile)
 
 -- text
 import Data.Text
@@ -33,10 +33,12 @@ testForSeconds nSeconds mainFunction testFunction = testForSecondsErrHandle nSec
 testForSecondsErrHandle :: Int -> IO () -> ([Text] -> [Text]) -> Handle -> IO ()
 testForSecondsErrHandle nSeconds mainFunction testFunction stderrOld = do
   putStrLn "---------------------------"
-  output <- capture_ $ do
-    void $ forkIO mainFunction
+  output <- do
+    output <- newEmptyMVar
+    void $ forkIO (capture_ mainFunction >>= putMVar output)
     hPutStr stderrOld "Testing"
     forM_ [(1 :: Int) .. 20] $ const $ hPutStr stderrOld "." >> threadDelay (50000 * nSeconds) >> hFlush stderrOld
+    readMVar output
   putStrLn "\n---------------------------\n"
   case testFunction $ lines $ pack output of
     [] -> putStrLn "Well done!"
