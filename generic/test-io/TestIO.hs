@@ -6,7 +6,7 @@ import Control.Monad
 import GHC.IO.Handle (hDuplicate, hDuplicateTo)
 import System.Exit
 import System.IO (Handle, IOMode (..), hFlush, stderr, stdin, withFile)
-import Prelude hiding (lines, putStrLn, unlines, writeFile, appendFile)
+import Prelude hiding (lines, putStrLn, unlines, writeFile)
 
 -- text
 import Data.Text
