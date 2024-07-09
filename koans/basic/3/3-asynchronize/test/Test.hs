@@ -27,7 +27,7 @@ testLines =
 main :: IO ()
 main = do
   putStrLn "No worries, this will take 10-20 seconds..."
-  testForSecondsInput 10 (concat $ replicate 20000 testLines) Koan.main $ \output ->
+  testForSecondsInput 10 (concat $ replicate 32500 testLines) Koan.main $ \output ->
     case output of
       [] -> ["Weird, your program didn't produce any output!"]
       _ -> fromLeft [] $ do
@@ -36,7 +36,7 @@ main = do
           thing -> Left $ "Somehow there wasn't enough output:" : thing ++ ["Did you not include printCounts?"]
         (sinceInit :: Double) <- first (const ["Tried to parse sinceInit = ", sinceInitText, " but failed"]) $ readEither $ unpack sinceInitText
         (count :: WordCount) <- first (const ["Tried to parse count = ", countText, " but failed"]) $ readEither $ unpack countText
-        let expected = WordCount {nChars = 540000, nWords = 120000, nLines = 60000}
+        let expected = WordCount {nChars = 877500, nWords = 195000, nLines = 97500}
         unless (Text.take 13 (last output) == "Final result:") $ Left ["Didn't find a 'Final result: ...' section."]
         unless (last output == "Final result: " <> tshow expected) $ Left ["Wrong count:", last output]
         unless
