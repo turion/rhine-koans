@@ -15,6 +15,12 @@ Stack is not required.
 Haskell Language Server is highly recommended.
 Have a look at https://www.haskell.org/downloads/ for installation instructions.
 
+If you have `nix` install, all you need to do is:
+
+```
+nix develop
+```
+
 ### Get started
 
 Clone this repository and enter it on a console.
@@ -64,6 +70,27 @@ cabal test basic-1-2-fix-the-bug-test
 * `basic`: Write some simple Rhine programs. Start here.
   Learn about signal functions, clocks, and resampling buffers.
 * `ui`: Create a clone of the classic Snake game by using `rhine-gloss`.
+
+#### Install system dependencies for the `ui` track
+
+##### `nix`
+
+If you have `nix` installed (recommended), simply do:
+
+```
+nix develop
+```
+
+See `flake.nix` for more options,
+for example you could do `nix develop .#ghc98` to run the koans with GHC 9.8.
+
+##### Debian, Ubuntu, ...
+
+In Debian-based systems, do:
+
+```
+sudo apt-get install -y libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
+```
 
 ### Stuck?
 
