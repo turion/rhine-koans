@@ -1,0 +1,15 @@
+name: update-flake-lock
+on:
+  schedule:
+    - cron: '0 15 * * 2' # runs weekly on Tuesday at 15:00
+
+jobs:
+  lockfile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install Nix
+        uses: cachix/install-nix-action@v27
+      - name: Update flake.lock
+        uses: DeterminateSystems/update-flake-lock@v23
