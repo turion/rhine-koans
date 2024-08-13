@@ -130,7 +130,9 @@ jobs:
       - name: Build executables
         run: nix build .#rhine-koans-all --accept-flake-config
       - name: Run tests
-        run: nix develop --accept-flake-config -c cabal test all -fsolution
+        run: |
+          nix develop --accept-flake-config -c cabal update
+          nix develop --accept-flake-config -c cabal test all -fsolution
 
   presentation:
     name: Build presentation
