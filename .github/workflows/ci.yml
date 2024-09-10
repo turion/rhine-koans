@@ -118,7 +118,7 @@ jobs:
           sudo rm -rf /usr/local/* /usr/share/* /opt/*
           docker rmi $(docker image ls -aq)
       - uses: cachix/install-nix-action@v27
-      - uses: DeterminateSystems/magic-nix-cache-action@v7
+      - uses: DeterminateSystems/magic-nix-cache-action@v8
       - uses: cachix/cachix-action@v15
         with:
           name: rhine-koans
@@ -140,7 +140,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: cachix/install-nix-action@v27
-      - uses: DeterminateSystems/magic-nix-cache-action@v7
+      - uses: DeterminateSystems/magic-nix-cache-action@v8
       - uses: cachix/cachix-action@v15
         with:
           name: rhine-koans
