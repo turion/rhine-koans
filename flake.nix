@@ -20,7 +20,10 @@
       flake = false;
     };
 
-    rhine.url = "github:turion/rhine";
+    rhine = {
+      url = "github:turion/rhine";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, nix-mkPandoc, rhine }:
@@ -77,7 +80,11 @@
           };
         };
 
-      overlay = lib.composeManyExtensions [ rhine.overlays.default localOverlay ];
+      overlay = lib.composeManyExtensions [
+        rhine.overlays.dependenciesOverlay
+        localOverlay
+      ];
+
 
       # Helper to build a flake output for all systems that are defined in nixpkgs
       forAllPlatforms = f:
