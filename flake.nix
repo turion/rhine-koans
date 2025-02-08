@@ -118,12 +118,13 @@
       devShells = forAllPlatforms (systems: pkgs: mapAttrs
         (_: hp: hp.shellFor {
           packages = ps: [ ps.rhine-koans ];
-          nativeBuildInputs = with hp; [
+          nativeBuildInputs = (with hp; [
+            haskell-language-server
+          ]) ++ (with pkgs; with haskellPackages; [
             cabal-gild
             cabal-install
             fourmolu
-            haskell-language-server
-          ];
+          ]);
         })
         (hpsFor pkgs));
 
