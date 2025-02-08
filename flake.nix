@@ -104,8 +104,8 @@
       # - nix build .#rhine-koans-all
       packages = forAllPlatforms (system: pkgs: {
         inherit (pkgs) rhine-koans-all;
-        default = import ./presentation { inherit pkgs nix-mkPandoc; };
-      });
+        presentation = import ./presentation { inherit pkgs nix-mkPandoc; };
+      } // lib.mapAttrs (ghcVersion: haskellPackages: haskellPackages.rhine-koans) (hpsFor pkgs));
 
       # We re-export the entire nixpkgs package set with our overlay.
       # Usage examples:
@@ -126,5 +126,7 @@
           ];
         })
         (hpsFor pkgs));
+
+      inherit supportedGhcs;
     };
 }
