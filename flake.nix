@@ -88,7 +88,7 @@
 
       # Helper to build a flake output for all systems that are defined in nixpkgs
       forAllPlatforms = f:
-        mapAttrs (system: pkgs: f system (pkgs.extend overlay)) inputs.nixpkgs.legacyPackages;
+        mapAttrs (system: pkgs: f system pkgs) inputs.nixpkgs.legacyPackages;
 
     in
     {
@@ -105,27 +105,28 @@
       packages = forAllPlatforms (system: pkgs: {
         inherit (pkgs) rhine-koans-all;
         presentation = import ./presentation { inherit pkgs nix-mkPandoc; };
-      } // lib.mapAttrs (ghcVersion: haskellPackages: haskellPackages.rhine-koans) (hpsFor pkgs));
+      } // lib.mapAttrs (ghcVersion: haskellPackages: haskellPackages.rhine-koans) (hpsFor (pkgs.extend overlay)));
 
       # We re-export the entire nixpkgs package set with our overlay.
       # Usage examples:
       # - nix build .#haskellPackages.rhine-koans
       # - nix build .#haskell.packages.ghc98.rhine-koans
-      legacyPackages = forAllPlatforms (system: pkgs: pkgs);
+      legacyPackages = forAllPlatforms (system: pkgs: pkgs.extend overlay);
 
       # Usage: nix develop (will use the default GHC)
       # Alternatively, specify the GHC: nix develop .#ghc98
       devShells = forAllPlatforms (systems: pkgs: mapAttrs
         (_: hp: hp.shellFor {
           packages = ps: [ ps.rhine-koans ];
-          nativeBuildInputs = with hp; [
+          nativeBuildInputs = (with hp; [
+            haskell-language-server
+          ]) ++ (with pkgs; with haskellPackages; [
             cabal-gild
             cabal-install
             fourmolu
-            haskell-language-server
-          ];
+          ]);
         })
-        (hpsFor pkgs));
+        (hpsFor (pkgs.extend overlay)));
 
       inherit supportedGhcs;
     };
