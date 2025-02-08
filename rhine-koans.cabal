@@ -397,7 +397,7 @@ common gloss
         transformers,
         random ^>= 1.2,
         MonadRandom ^>= 0.6,
-        containers ^>= 0.6,
+        containers >= 0.6 && <0.8,
         monad-schedule ^>= 0.2,
         rhine-koans:test-gloss
 
