@@ -13,15 +13,16 @@ extra-doc-files:    CHANGELOG.md
 -- extra-source-files:
 
 tested-with:
-  GHC == 9.2.8
-  GHC == 9.4.8
-  GHC == 9.6.4
-  GHC == 9.8.2
+  GHC == 9.2
+  GHC == 9.4
+  GHC == 9.6
+  GHC == 9.8
+  GHC == 9.10
 
 common opts
     ghc-options: -Wall
     default-language: GHC2021
-    build-depends:    base >=4.16.4.0 && <4.20
+    build-depends:    base >=4.16.4.0 && <4.21
                     , rhine >= 1.4 && < 1.6
                     , text >=1.2 && <2.2
                     , transformers >= 0.5.3.0 && <0.7
@@ -396,7 +397,7 @@ common gloss
         transformers,
         random ^>= 1.2,
         MonadRandom ^>= 0.6,
-        containers ^>= 0.6,
+        containers >= 0.6 && <0.8,
         monad-schedule ^>= 0.2,
         rhine-koans:test-gloss
 

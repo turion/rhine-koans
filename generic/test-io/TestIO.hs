@@ -9,7 +9,7 @@ import System.IO (Handle, IOMode (..), hFlush, stderr, stdin, withFile)
 import Prelude hiding (lines, putStrLn, unlines, writeFile)
 
 -- text
-import Data.Text
+import Data.Text (Text, lines, pack, unlines)
 import Data.Text.IO
 
 -- silently

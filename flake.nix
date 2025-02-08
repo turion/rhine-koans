@@ -39,6 +39,7 @@
         "ghc94"
         "ghc96"
         "ghc98"
+        "ghc910"
       ];
       # The Haskell packages set, for every supported GHC version
       hpsFor = pkgs:
