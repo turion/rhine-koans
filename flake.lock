@@ -61,11 +61,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1735506193,
-        "narHash": "sha256-/7WNOK4PIVaZbfx8kqlL8XkOlrxjCF0IsE+F/WPA02Q=",
+        "lastModified": 1739036148,
+        "narHash": "sha256-FX1FOOuvHvWDU4M5qjhitMGA+Rw07Jb5mTcCFyIaM28=",
         "owner": "turion",
         "repo": "rhine",
-        "rev": "f9224cdd69a3216d3062307ae596099ab4217eeb",
+        "rev": "f21b5980130b966f5508ad19bfc5763cf8fa8fba",
         "type": "github"
       },
       "original": {
