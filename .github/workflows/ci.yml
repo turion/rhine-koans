@@ -107,18 +107,31 @@ jobs:
       - name: Cabal test solutions
         run: cabal test all --enable-tests --test-show-details=Always -fsolution
 
-  build-flake:
-    name: Nix Flake
-    runs-on:
-      - ubuntu-latest
+  generate-flake-ghc-matrix:
+    name: Generate GHC versions for nix flake build matrix
+    runs-on: ubuntu-latest
+    outputs:
+      versions: ${{ steps.generate-versions.outputs.versions }}
     steps:
       - uses: actions/checkout@v4
-      - name: Free disk space
-        run: |
-          sudo rm -rf /usr/local/* /usr/share/* /opt/*
-          docker rmi $(docker image ls -aq)
       - uses: cachix/install-nix-action@v30
-      - uses: DeterminateSystems/magic-nix-cache-action@v8
+      - name: Generate versions
+        id: generate-versions
+        run: |
+          echo -n "versions=" >> "$GITHUB_OUTPUT"
+          nix eval .#supportedGhcs --json >> "$GITHUB_OUTPUT"
+
+  build-flake:
+    name: Nix Flake
+    needs: generate-flake-ghc-matrix
+    strategy:
+      matrix:
+        version: ${{ fromJSON(needs.generate-flake-ghc-matrix.outputs.versions) }}
+      fail-fast: false # So the cache is still filled
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@v30
       - uses: cachix/cachix-action@v15
         with:
           name: rhine-koans
@@ -128,11 +141,11 @@ jobs:
           nix fmt
           git diff --exit-code
       - name: Build executables
-        run: nix build .#rhine-koans-all --accept-flake-config
+        run: nix build .#${{ matrix.version }} --accept-flake-config
       - name: Run tests
         run: |
-          nix develop --accept-flake-config -c cabal update
-          nix develop --accept-flake-config -c cabal test all -fsolution
+          nix develop .#${{ matrix.version }} --accept-flake-config -c cabal update
+          nix develop .#${{ matrix.version }} --accept-flake-config -c cabal test all -fsolution
 
   presentation:
     name: Build presentation
@@ -140,13 +153,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: cachix/install-nix-action@v30
-      - uses: DeterminateSystems/magic-nix-cache-action@v8
       - uses: cachix/cachix-action@v15
         with:
           name: rhine-koans
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
       - name: Build presentation
-        run: nix build --accept-flake-config
+        run: nix build .#presentation --accept-flake-config
       - name: Install pdftotext
         run: nix profile install nixpkgs#poppler_utils
       - name: Compare presentation to checked in version
