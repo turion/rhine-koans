@@ -35,7 +35,6 @@
       # To do: Automated check whether this is the same as what get-tested returns.
       # Currently blocked on https://github.com/Kleidukos/get-tested/issues/39
       supportedGhcs = [
-        "ghc92"
         "ghc94"
         "ghc96"
         "ghc98"

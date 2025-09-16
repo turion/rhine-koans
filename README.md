@@ -15,7 +15,7 @@ Stack is not required.
 Haskell Language Server is highly recommended.
 Have a look at https://www.haskell.org/downloads/ for installation instructions.
 
-If you have `nix` install, all you need to do is:
+If you have `nix` installed, all you need to do is:
 
 ```
 nix develop
