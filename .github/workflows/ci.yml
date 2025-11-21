@@ -160,7 +160,7 @@ jobs:
       - name: Build presentation
         run: nix build .#presentation --accept-flake-config
       - name: Install pdftotext
-        run: nix profile install nixpkgs#poppler_utils
+        run: nix profile add nixpkgs#poppler-utils
       - name: Compare presentation to checked in version
         run: diff <(pdftotext -layout presentation/presentation.pdf /dev/stdout) <(pdftotext -layout result/presentation.pdf /dev/stdout)
 
