@@ -118,9 +118,9 @@
       devShells = forAllPlatforms (systems: pkgs: mapAttrs
         (_: hp: hp.shellFor {
           packages = ps: [ ps.rhine-koans ];
-          nativeBuildInputs = (with hp; [
+          nativeBuildInputs = (with hp; lib.optional (lib.versionAtLeast hp.ghc.version "9.6")
             haskell-language-server
-          ]) ++ (with pkgs; with haskellPackages; [
+          ) ++ (with pkgs; with haskellPackages; [
             cabal-gild
             cabal-install
             fourmolu
