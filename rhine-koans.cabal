@@ -26,6 +26,8 @@ common opts
                     , rhine >= 1.4 && < 1.6
                     , text >=1.2 && <2.2
                     , transformers >= 0.5.3.0 && <0.7
+                    -- Transient version bound until we've bumped rhine
+                    , semialign < 1.4
     default-extensions:
         DataKinds
         GADTs
