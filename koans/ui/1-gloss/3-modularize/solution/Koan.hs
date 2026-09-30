@@ -44,7 +44,7 @@ Its type signature ensures that it will be run on the 'GameClock'.
 movingCircle :: ClSF GlossConc GameClock () Picture
 -- The cryptic type error wants to tell us that the time since clock initialisation is in Double, but gloss expects a Float!
 -- Can you convert one to the other?
-movingCircle = sinceInitS >-> arr (\t -> translate 0 (10 * double2Float t) $ circleSolid 10) -- realToFrac works as well!
+movingCircle = sinceInitS >-> arr (\(Seconds t) -> translate 0 (10 * double2Float t) $ circleSolid 10) -- realToFrac works as well!
 
 -- | A clock that ticks at every round of the game.
 type GameClock =

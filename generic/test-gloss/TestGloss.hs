@@ -36,7 +36,7 @@ stepGlossRhineWithInput rhine timestamps events = do
   void $ forkIO $ forM_ events $ putMVar $ eventVar vars
   void $ forkIO $ runGlossConcT (flow rhine) vars
   forM timestamps $ \timestamp -> do
-    putMVar (timeVar vars) timestamp
+    putMVar (timeVar vars) $ Seconds timestamp
     threadDelay 33333
     readIORef (picRef vars)
 

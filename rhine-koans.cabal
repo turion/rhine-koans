@@ -23,7 +23,7 @@ common opts
     ghc-options: -Wall
     default-language: GHC2021
     build-depends:    base >=4.16.4.0 && <4.21
-                    , rhine >= 1.4 && < 1.6
+                    , rhine ^>= 1.8
                     , text >=1.2 && <2.2
                     , transformers >= 0.5.3.0 && <0.7
                     -- Transient version bound until we've bumped rhine
@@ -69,8 +69,7 @@ library test-gloss
     hs-source-dirs:   generic/test-gloss
     exposed-modules:  TestGloss
     build-depends:
-        rhine-gloss,
-        monad-schedule ^>= 0.2
+        rhine-gloss
 
 common basic-1-1-hello-rhine
     if flag(solution)
@@ -400,7 +399,6 @@ common gloss
         random ^>= 1.2,
         MonadRandom ^>= 0.6,
         containers >= 0.6 && <0.8,
-        monad-schedule ^>= 0.2,
         rhine-koans:test-gloss
 
 common ui-1-gloss-1-circle

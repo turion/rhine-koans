@@ -75,7 +75,7 @@ fiveToOne = collect
 type MainClock = SequentialClock FivePerSecond EverySecond
 
 -- | Produce "Hello Rhine!" five times per second.
-produceRhine :: (Monad m) => Rhine m FivePerSecond () Text
+produceRhine :: Rhine IO FivePerSecond () Text
 produceRhine = produceMessage @@ fivePerSecond
 
 -- | Print a list of 'Text's every second.

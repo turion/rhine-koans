@@ -21,7 +21,7 @@ import Koan (Apple (Apple), Direction (North), Position (..), Snake (..), render
 main :: IO ()
 main = do
   setStdGen $ mkStdGen 0
-  pics <- fmap nub $ stepGlossRhineWithInput rhine ((/ 30) <$> [0, 1 .. 150]) $ cycle [keyRight, keyLeft]
+  pics <- fmap nub $ stepGlossRhineWithInput rhine ((/ 30) <$> replicate 150 1) $ cycle [keyRight, keyLeft]
   let apple = Apple $ Position {x = 4, y = 4} -- By fixing the stdgen the apple will always be here
       beforeEating =
         (,singleton apple) . snek North
