@@ -20,7 +20,7 @@ import FRP.Rhine.Gloss
 -- | The main 'Rhine' of this program.
 rhine :: Rhine GlossConc GlossSimClockIO () ()
 -- Somehow the order of these functions is wrong. Can you fix it?
-rhine = sinceInitS >-> arrMCl (\t -> paintAllIO $ translate 0 (10 * t) $ circleSolid 10) @@ GlossSimClockIO
+rhine = sinceInitS >-> arrMCl (\(Seconds t) -> paintAllIO $ translate 0 (10 * t) $ circleSolid 10) @@ GlossSimClockIO
 
 main :: IO ()
 -- Make sure to keep this definition here as it is: The tests depend on it.
